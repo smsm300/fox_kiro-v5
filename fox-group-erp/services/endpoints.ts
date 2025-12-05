@@ -9,7 +9,6 @@ import type {
   AppSettings,
   User,
   ActivityLogEntry,
-  CartItem,
   PaymentMethod,
 } from '../types';
 
@@ -212,10 +211,14 @@ export const transactionsAPI = {
       return {
         data: {
           id: `offline_${Date.now()}`,
-          type: 'sale',
+          type: 'بيع',
+          date: new Date().toISOString(),
+          amount: data.total_amount,
+          paymentMethod: data.payment_method,
+          description: 'فاتورة بيع (في انتظار المزامنة)',
           status: 'pending_sync',
-          ...data,
-        } as Transaction
+          relatedId: data.customer_id,
+        } as unknown as Transaction
       };
     }
     
@@ -230,10 +233,14 @@ export const transactionsAPI = {
       return {
         data: {
           id: `offline_${Date.now()}`,
-          type: 'purchase',
+          type: 'شراء',
+          date: new Date().toISOString(),
+          amount: data.total_amount,
+          paymentMethod: data.payment_method,
+          description: 'فاتورة شراء (في انتظار المزامنة)',
           status: 'pending_sync',
-          ...data,
-        } as Transaction
+          relatedId: data.supplier_id,
+        } as unknown as Transaction
       };
     }
     
@@ -248,10 +255,14 @@ export const transactionsAPI = {
       return {
         data: {
           id: `offline_${Date.now()}`,
-          type: 'expense',
+          type: 'مصروف',
+          date: new Date().toISOString(),
+          amount: data.amount,
+          paymentMethod: data.payment_method,
+          description: data.description,
+          category: data.category,
           status: 'pending_sync',
-          ...data,
-        } as Transaction
+        } as unknown as Transaction
       };
     }
     
@@ -266,10 +277,13 @@ export const transactionsAPI = {
       return {
         data: {
           id: `offline_${Date.now()}`,
-          type: 'capital',
+          type: 'إيداع رأس مال',
+          date: new Date().toISOString(),
+          amount: data.amount,
+          paymentMethod: 'كاش' as PaymentMethod,
+          description: data.description,
           status: 'pending_sync',
-          ...data,
-        } as Transaction
+        } as unknown as Transaction
       };
     }
     
@@ -284,10 +298,13 @@ export const transactionsAPI = {
       return {
         data: {
           id: `offline_${Date.now()}`,
-          type: 'withdrawal',
+          type: 'مسحوبات',
+          date: new Date().toISOString(),
+          amount: data.amount,
+          paymentMethod: 'كاش' as PaymentMethod,
+          description: data.description,
           status: 'pending_sync',
-          ...data,
-        } as Transaction
+        } as unknown as Transaction
       };
     }
     

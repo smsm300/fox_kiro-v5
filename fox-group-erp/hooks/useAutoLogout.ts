@@ -3,19 +3,24 @@ import { useEffect, useRef, useCallback } from 'react';
 interface UseAutoLogoutOptions {
   onLogout: () => void;
   inactivityTimeout?: number; // in milliseconds (default: 30 minutes)
-  logoutOnBrowserClose?: boolean; // default: true
+  enabled?: boolean; // default: true - only run when user is authenticated
 }
+
+const HIDDEN_TIME_KEY = 'fox_erp_hidden_time';
 
 export const useAutoLogout = ({
   onLogout,
   inactivityTimeout = 30 * 60 * 1000, // 30 minutes default
-  logoutOnBrowserClose = true
+  enabled = true
 }: UseAutoLogoutOptions) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastActivityRef = useRef<number>(Date.now());
+  const isInitializedRef = useRef(false);
 
   // Reset inactivity timer
   const resetTimer = useCallback(() => {
+    if (!enabled) return;
+    
     lastActivityRef.current = Date.now();
     
     // Clear existing timeout
@@ -28,10 +33,21 @@ export const useAutoLogout = ({
       console.log('Auto logout due to inactivity');
       onLogout();
     }, inactivityTimeout);
-  }, [inactivityTimeout, onLogout]);
+  }, [inactivityTimeout, onLogout, enabled]);
+
+  // Initialize - clear any stale data from previous sessions
+  useEffect(() => {
+    if (enabled && !isInitializedRef.current) {
+      // Clear any stale hidden time from previous session
+      sessionStorage.removeItem(HIDDEN_TIME_KEY);
+      isInitializedRef.current = true;
+    }
+  }, [enabled]);
 
   // Track user activity
   useEffect(() => {
+    if (!enabled) return;
+
     const events = ['mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
 
     const handleActivity = () => {
@@ -43,8 +59,10 @@ export const useAutoLogout = ({
       document.addEventListener(event, handleActivity);
     });
 
-    // Initialize timer
-    resetTimer();
+    // Initialize timer with a small delay to avoid immediate triggers
+    const initTimeout = setTimeout(() => {
+      resetTimer();
+    }, 1000);
 
     // Cleanup
     return () => {
@@ -54,63 +72,32 @@ export const useAutoLogout = ({
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+      clearTimeout(initTimeout);
     };
-  }, [resetTimer]);
-
-  // Handle browser close/refresh
-  useEffect(() => {
-    if (!logoutOnBrowserClose) return;
-
-    const handleBeforeUnload = () => {
-      // Mark session as ended
-      sessionStorage.setItem('fox_erp_session_ended', 'true');
-    };
-
-    const handleLoad = () => {
-      // Check if this is a new session (browser was closed)
-      const sessionEnded = sessionStorage.getItem('fox_erp_session_ended');
-      
-      if (sessionEnded === 'true') {
-        // This is a page refresh, not a new session
-        sessionStorage.removeItem('fox_erp_session_ended');
-      } else {
-        // This is a new session (browser was closed and reopened)
-        // Check if there's a token in localStorage
-        const token = localStorage.getItem('token');
-        if (token) {
-          console.log('Auto logout: Browser was closed');
-          onLogout();
-        }
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    handleLoad(); // Check on mount
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [logoutOnBrowserClose, onLogout]);
+  }, [resetTimer, enabled]);
 
   // Visibility change detection (tab switching)
   useEffect(() => {
+    if (!enabled) return;
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         // Tab is hidden - store the time
-        sessionStorage.setItem('fox_erp_hidden_time', Date.now().toString());
+        sessionStorage.setItem(HIDDEN_TIME_KEY, Date.now().toString());
       } else {
         // Tab is visible again - check how long it was hidden
-        const hiddenTime = sessionStorage.getItem('fox_erp_hidden_time');
+        const hiddenTime = sessionStorage.getItem(HIDDEN_TIME_KEY);
         if (hiddenTime) {
           const elapsed = Date.now() - parseInt(hiddenTime);
-          if (elapsed > inactivityTimeout) {
+          // Only logout if hidden for longer than timeout AND it was actually hidden (not just page load)
+          if (elapsed > inactivityTimeout && elapsed < 24 * 60 * 60 * 1000) { // Max 24 hours to avoid stale data
             console.log('Auto logout: Tab was hidden too long');
             onLogout();
           } else {
             // Reset timer if still within timeout
             resetTimer();
           }
-          sessionStorage.removeItem('fox_erp_hidden_time');
+          sessionStorage.removeItem(HIDDEN_TIME_KEY);
         }
       }
     };
@@ -120,7 +107,7 @@ export const useAutoLogout = ({
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [inactivityTimeout, onLogout, resetTimer]);
+  }, [inactivityTimeout, onLogout, resetTimer, enabled]);
 
   return { resetTimer };
 };

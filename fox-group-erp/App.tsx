@@ -77,22 +77,40 @@ function App() {
     logActivity('تسجيل خروج', 'خروج المستخدم من النظام');
   };
 
-  // Auto logout hook (configurable from settings)
+  // Auto logout hook (only active when authenticated)
+  // Handles inactivity timeout and tab visibility
   useAutoLogout({
     onLogout: handleLogout,
-    inactivityTimeout: (settings.inactivityTimeout || 30) * 60 * 1000, // Convert minutes to milliseconds
-    logoutOnBrowserClose: settings.logoutOnBrowserClose !== false // Default true
+    inactivityTimeout: (settings.inactivityTimeout || 30) * 60 * 1000,
+    enabled: isAuthenticated // Only run when user is logged in
   });
 
-  // Check authentication on mount
+  // Check authentication on mount (with browser close detection)
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userStr = localStorage.getItem('user');
-    if (token && userStr) {
+    const sessionActive = sessionStorage.getItem('fox_erp_session_active');
+    
+    // If there's a token but no active session, browser was closed
+    // Clear the old token so user needs to login again
+    if (token && !sessionActive) {
+      console.log('Browser was closed - clearing old authentication');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      // Don't return - let user see login page
+    }
+    
+    // Check again after potential cleanup
+    const currentToken = localStorage.getItem('token');
+    const currentUserStr = localStorage.getItem('user');
+    
+    if (currentToken && currentUserStr) {
       try {
-        const user = JSON.parse(userStr);
+        const user = JSON.parse(currentUserStr);
         setCurrentUser(user);
         setIsAuthenticated(true);
+        // Mark session as active
+        sessionStorage.setItem('fox_erp_session_active', 'true');
       } catch (err) {
         console.error('Failed to parse user from localStorage:', err);
         localStorage.removeItem('token');
@@ -837,6 +855,8 @@ function App() {
 
   if (!isAuthenticated) {
     return <Login users={users} onLogin={(user) => {
+      // Mark session as active for browser close detection
+      sessionStorage.setItem('fox_erp_session_active', 'true');
       setIsAuthenticated(true);
       setCurrentUser(user);
       logActivity('تسجيل دخول', `تسجيل دخول المستخدم ${user.username}`);
