@@ -236,8 +236,8 @@ function App() {
   // --- Handlers ---
 
   const handleSaleComplete = async (cartItems: CartItem[], customerId: number, paymentMethod: PaymentMethod, totalAmount: number, invoiceId?: string, isDirectSale: boolean = false, dueDate?: string) => {
-    // Check if shift is open
-    if (!settings.currentShiftId) {
+    // Check if shift is open (Admin can sell without shift)
+    if (!settings.currentShiftId && currentUser.role !== 'admin') {
       alert('يجب فتح الوردية (Shift) أولاً قبل إجراء أي عملية بيع.');
       return;
     }
@@ -817,13 +817,13 @@ function App() {
                   onAddCustomer={handleAddCustomer}
                />;
       case APP_SECTIONS.PURCHASES:
-        return <Purchases />;
+        return <Purchases onDataChange={fetchInitialData} />;
       case APP_SECTIONS.QUOTATIONS:
         return <Quotations quotations={quotations} customers={customers} products={products} onCreateQuotation={handleCreateQuotation} onConvertToInvoice={handleConvertQuoteToInvoice} settings={settings} />;
       case APP_SECTIONS.INVOICES:
-        return <Invoices />;
+        return <Invoices onDataChange={fetchInitialData} />;
       case APP_SECTIONS.INVENTORY:
-        return <Inventory />;
+        return <Inventory onProductsChange={fetchInitialData} />;
       case APP_SECTIONS.TREASURY:
         return <Treasury 
                   transactions={transactions} 
@@ -839,9 +839,9 @@ function App() {
                   onCapitalTransaction={handleCapitalTransaction}
                />;
       case APP_SECTIONS.CUSTOMERS:
-        return <Customers />;
+        return <Customers onDataChange={fetchInitialData} />;
       case APP_SECTIONS.SUPPLIERS:
-        return <Suppliers />;
+        return <Suppliers onDataChange={fetchInitialData} />;
       case APP_SECTIONS.REPORTS:
         return <Reports />;
       case APP_SECTIONS.USERS:

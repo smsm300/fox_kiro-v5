@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Plus, Search } from 'lucide-react';
 import { Product } from '../types';
 import { ProductForm } from '../components/inventory/ProductForm';
@@ -7,7 +7,11 @@ import { StockAdjustment } from '../components/inventory/StockAdjustment';
 import { productsAPI } from '../services/endpoints';
 import { handleAPIError } from '../services/errorHandler';
 
-const Inventory: React.FC = () => {
+interface InventoryProps {
+  onProductsChange?: () => void;
+}
+
+const Inventory: React.FC<InventoryProps> = ({ onProductsChange }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +22,6 @@ const Inventory: React.FC = () => {
   const [adjustingProduct, setAdjustingProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    console.log('🚀 Inventory page mounted!');
     fetchProducts();
   }, []);
 
@@ -26,16 +29,10 @@ const Inventory: React.FC = () => {
     setLoading(true);
     try {
       const response = await productsAPI.list();
-      console.log('📦 Products API Response:', response);
-      console.log('📦 Products Data:', response.data);
-      
       // Handle both paginated and non-paginated responses
       const productsData = (response.data as any).results || response.data;
-      console.log('📦 Products Array:', productsData);
-      
       setProducts(Array.isArray(productsData) ? productsData : []);
     } catch (err: any) {
-      console.error('❌ Error fetching products:', err);
       alert(handleAPIError(err));
       setProducts([]);
     } finally {
@@ -59,12 +56,12 @@ const Inventory: React.FC = () => {
   const existingCategories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
   const existingUnits = Array.from(new Set(products.map(p => p.unit).filter(Boolean)));
 
-  const filteredProducts = products.filter(p => {
+  const filteredProducts = useMemo(() => products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         p.sku.toLowerCase().includes(searchTerm.toLowerCase());
+      p.sku.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
-  });
+  }), [products, searchTerm, selectedCategory]);
 
   const handleOpenForm = () => {
     setEditingProduct(null);
@@ -113,6 +110,8 @@ const Inventory: React.FC = () => {
       setIsFormOpen(false);
       console.log('🔄 Fetching products after save...');
       await fetchProducts();
+      // Notify parent to refresh products in other pages
+      onProductsChange?.();
       console.log('✅ Products fetched, count:', products.length);
     } catch (err: any) {
       console.error('❌ Error in handleSubmit:', err);
@@ -123,7 +122,12 @@ const Inventory: React.FC = () => {
   };
 
   const handleFormChange = (field: keyof Omit<Product, 'id'>, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    console.log('📝 Form change:', field, '=', value);
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      console.log('📝 New formData:', newData);
+      return newData;
+    });
   };
 
   const handleAdjustStock = (product: Product) => {
@@ -138,6 +142,7 @@ const Inventory: React.FC = () => {
       alert('تم تعديل المخزون بنجاح');
       setIsStockAdjustmentOpen(false);
       await fetchProducts();
+      onProductsChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -152,6 +157,7 @@ const Inventory: React.FC = () => {
         await productsAPI.delete(id);
         alert('تم حذف المنتج بنجاح');
         await fetchProducts();
+        onProductsChange?.();
       } catch (err: any) {
         alert(handleAPIError(err));
       } finally {
@@ -200,11 +206,10 @@ const Inventory: React.FC = () => {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-              selectedCategory === cat
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
                 ? 'bg-fox-500 text-white shadow-md'
                 : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
-            }`}
+              }`}
           >
             {cat === 'all' ? 'الكل' : cat}
           </button>

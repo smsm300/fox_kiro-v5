@@ -41,9 +41,15 @@ export const ProductList: React.FC<ProductListProps> = ({
         </thead>
         <tbody className="divide-y divide-dark-800">
           {products.map(product => {
-            const profit = product.sellPrice - product.costPrice;
-            const profitMargin = ((profit / product.sellPrice) * 100).toFixed(1);
-            const isLowStock = product.quantity <= product.minStockAlert;
+            // Convert string values from API to numbers
+            const qty = Number(product.quantity) || 0;
+            const cost = Number(product.costPrice) || 0;
+            const sell = Number(product.sellPrice) || 0;
+            const minAlert = Number(product.minStockAlert) || 0;
+            
+            const profit = sell - cost;
+            const profitMargin = sell > 0 ? ((profit / sell) * 100).toFixed(1) : '0.0';
+            const isLowStock = qty <= minAlert;
 
             return (
               <tr key={product.id} className="hover:bg-dark-900/50 text-gray-300">
@@ -60,17 +66,17 @@ export const ProductList: React.FC<ProductListProps> = ({
                       <AlertTriangle size={16} className="text-yellow-500" />
                     )}
                     <span className={`font-bold ${
-                      product.quantity === 0 ? 'text-red-400' :
+                      qty === 0 ? 'text-red-400' :
                       isLowStock ? 'text-yellow-400' :
                       'text-emerald-400'
                     }`}>
-                      {product.quantity} {product.unit}
+                      {qty} {product.unit}
                     </span>
                   </div>
                 </td>
-                <td className="p-3 font-mono">{product.costPrice.toLocaleString()}</td>
+                <td className="p-3 font-mono">{cost.toLocaleString()}</td>
                 <td className="p-3 font-mono font-bold text-fox-400">
-                  {product.sellPrice.toLocaleString()}
+                  {sell.toLocaleString()}
                 </td>
                 <td className="p-3">
                   <div className="flex flex-col">

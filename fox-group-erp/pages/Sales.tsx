@@ -18,12 +18,12 @@ interface SalesProps {
   onAddCustomer: (customer: Omit<Customer, 'id'>) => Customer;
 }
 
-const Sales: React.FC<SalesProps> = ({ 
-  products, 
-  customers, 
-  transactions, 
-  onCompleteSale, 
-  settings: initialSettings, 
+const Sales: React.FC<SalesProps> = ({
+  products,
+  customers,
+  transactions,
+  onCompleteSale,
+  settings: initialSettings,
   currentUser,
   onAddCustomer
 }) => {
@@ -41,7 +41,7 @@ const Sales: React.FC<SalesProps> = ({
       const response = await shiftsAPI.list();
       const shifts = (response.data as any).results || response.data;
       // Find the current user's open shift
-      const openShift = Array.isArray(shifts) 
+      const openShift = Array.isArray(shifts)
         ? shifts.find((s: Shift) => s.status === 'open' && s.userId === currentUser.id)
         : null;
       setCurrentShift(openShift || null);
@@ -65,15 +65,15 @@ const Sales: React.FC<SalesProps> = ({
 
   const handleCloseShift = async (endCash: number) => {
     if (!currentShift) return;
-    
+
     setLoading(true);
     try {
       const response = await shiftsAPI.close(currentShift.id, endCash);
       const closedShift = response.data;
-      
+
       // Display Z-Report
       alert(`تم إغلاق الوردية\n\nالنقدية المتوقعة: ${closedShift.expectedCash}\nالنقدية الفعلية: ${closedShift.endCash}\nالفرق: ${closedShift.endCash! - closedShift.expectedCash!}`);
-      
+
       setCurrentShift(null);
       return closedShift;
     } catch (err: any) {
@@ -94,23 +94,30 @@ const Sales: React.FC<SalesProps> = ({
     return firstCustomer?.id || 1;
   };
   const [selectedCustomer, setSelectedCustomer] = useState<number>(getCashCustomerId());
+
+  // Update selected customer when customers list loads
+  useEffect(() => {
+    if (customers.length > 0) {
+      setSelectedCustomer(getCashCustomerId());
+    }
+  }, [customers]);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CASH);
   const [isDirectSale, setIsDirectSale] = useState(false);
   const [dueDate, setDueDate] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Discount Modal State
-  const [discountModalItem, setDiscountModalItem] = useState<{id: number, price: number, currentDiscount: number} | null>(null);
+  const [discountModalItem, setDiscountModalItem] = useState<{ id: number, price: number, currentDiscount: number } | null>(null);
   const [discountValue, setDiscountValue] = useState<string>('');
 
   // Check if current user has an open shift
   // Admins can work without a shift, but cashiers must have one
   const requiresShift = currentUser.role !== 'admin';
-  
+
   // Close shift modal state
   const [isCloseShiftModalOpen, setIsCloseShiftModalOpen] = useState(false);
   const [endCash, setEndCash] = useState('');
-  
+
   if (!currentShift && requiresShift) {
     return <ShiftManager onOpenShift={handleOpenShift} />;
   }
@@ -126,7 +133,7 @@ const Sales: React.FC<SalesProps> = ({
   // Add product to cart
   const handleAddToCart = (product: Product) => {
     const existingItem = cart.find(item => item.id === product.id);
-    
+
     if (existingItem) {
       setCart(cart.map(item =>
         item.id === product.id
@@ -140,7 +147,7 @@ const Sales: React.FC<SalesProps> = ({
         discount: 0
       }]);
     }
-    
+
     setSearchTerm('');
     searchInputRef.current?.focus();
   };
@@ -174,16 +181,16 @@ const Sales: React.FC<SalesProps> = ({
   // Apply discount
   const handleApplyDiscount = () => {
     if (!discountModalItem) return;
-    
+
     const discount = Number(discountValue) || 0;
     if (discount < 0 || discount > discountModalItem.price) {
       alert('قيمة الخصم غير صحيحة');
       return;
     }
-    
-    setCart(cart.map(item => 
-      item.id === discountModalItem.id 
-        ? { ...item, discount } 
+
+    setCart(cart.map(item =>
+      item.id === discountModalItem.id
+        ? { ...item, discount }
         : item
     ));
     setDiscountModalItem(null);
@@ -194,12 +201,12 @@ const Sales: React.FC<SalesProps> = ({
   const handleCompleteSale = () => {
     if (cart.length === 0) return;
 
-    const total = cart.reduce((sum, item) => 
+    const total = cart.reduce((sum, item) =>
       sum + ((item.sellPrice - (item.discount || 0)) * item.cartQuantity), 0
     );
 
     const invoiceId = `INV-${Date.now()}`;
-    
+
     onCompleteSale(
       cart,
       selectedCustomer,
@@ -221,7 +228,7 @@ const Sales: React.FC<SalesProps> = ({
   // Hold cart - save to localStorage for later
   const handleHoldCart = () => {
     if (cart.length === 0) return;
-    
+
     const heldCarts = JSON.parse(localStorage.getItem('fox_erp_held_carts') || '[]');
     const newHeldCart = {
       id: Date.now(),
@@ -231,7 +238,7 @@ const Sales: React.FC<SalesProps> = ({
     };
     heldCarts.push(newHeldCart);
     localStorage.setItem('fox_erp_held_carts', JSON.stringify(heldCarts));
-    
+
     setCart([]);
     setSearchTerm('');
     alert('تم تعليق السلة بنجاح. يمكنك استرجاعها لاحقاً.');
@@ -261,7 +268,7 @@ const Sales: React.FC<SalesProps> = ({
           </button>
         </div>
       )}
-      
+
       {/* Left: Product Selection */}
       <div className="lg:col-span-2 bg-dark-950 rounded-xl border border-dark-800 p-4 overflow-hidden">
         <ProductSelector

@@ -13,7 +13,7 @@ class Product(models.Model):
     min_stock_level = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     max_stock_level = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     current_stock = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    product_image = models.CharField(max_length=500, blank=True, null=True)
+    product_image = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     allow_decimal = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -22,7 +22,7 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'fox_system"."products'
-        managed = False
+        managed = True
         verbose_name = 'منتج'
         verbose_name_plural = 'المنتجات'
 

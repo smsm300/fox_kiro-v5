@@ -25,6 +25,7 @@ interface TreasuryProps {
   onApprove?: (id: string) => void;
   onReject?: (id: string) => void;
   onCapitalTransaction: (type: 'deposit' | 'withdrawal', amount: number, description: string) => void;
+  onDataChange?: () => void;
 }
 
 const Treasury: React.FC<TreasuryProps> = ({ 
@@ -36,7 +37,8 @@ const Treasury: React.FC<TreasuryProps> = ({
   currentUser, 
   onApprove, 
   onReject, 
-  onCapitalTransaction 
+  onCapitalTransaction,
+  onDataChange
 }) => {
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [loading, setLoading] = useState(false);
@@ -182,7 +184,7 @@ const Treasury: React.FC<TreasuryProps> = ({
     try {
       await transactionsAPI.return(transaction.id.toString());
       alert('تم تسجيل المرتجع وتحديث الحسابات بنجاح');
-      window.location.reload();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -195,7 +197,7 @@ const Treasury: React.FC<TreasuryProps> = ({
     try {
       await transactionsAPI.approve(id);
       alert('تمت الموافقة على المعاملة بنجاح');
-      window.location.reload();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -208,7 +210,7 @@ const Treasury: React.FC<TreasuryProps> = ({
     try {
       await transactionsAPI.reject(id);
       alert('تم رفض المعاملة');
-      window.location.reload();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {

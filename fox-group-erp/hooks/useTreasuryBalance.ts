@@ -11,42 +11,12 @@ interface UseTreasuryBalanceProps {
 export const useTreasuryBalance = ({
   transactions,
   customers,
-  suppliers,
   openingBalance
 }: UseTreasuryBalanceProps) => {
-  
-  const balance = useMemo(() => {
+
+  // Single optimized loop for both balance and summary
+  const result = useMemo(() => {
     let currentBalance = openingBalance;
-
-    transactions.forEach(t => {
-      if (t.paymentMethod === PaymentMethod.DEFERRED) return;
-      if (t.status === 'pending' || t.status === 'rejected') return;
-
-      switch (t.type) {
-        case TransactionType.SALE:
-        case TransactionType.CAPITAL:
-          currentBalance += Number(t.amount);
-          break;
-        case TransactionType.PURCHASE:
-        case TransactionType.EXPENSE:
-        case TransactionType.WITHDRAWAL:
-          currentBalance -= Number(t.amount);
-          break;
-        case TransactionType.RETURN:
-          const isCustomerReturn = customers.some(c => c.id === t.relatedId);
-          if (isCustomerReturn) {
-            currentBalance -= Number(t.amount);
-          } else {
-            currentBalance += Number(t.amount);
-          }
-          break;
-      }
-    });
-
-    return currentBalance;
-  }, [transactions, customers, suppliers, openingBalance]);
-
-  const summary = useMemo(() => {
     let totalIncome = 0;
     let totalExpenses = 0;
 
@@ -57,18 +27,22 @@ export const useTreasuryBalance = ({
       switch (t.type) {
         case TransactionType.SALE:
         case TransactionType.CAPITAL:
+          currentBalance += Number(t.amount);
           totalIncome += Number(t.amount);
           break;
         case TransactionType.PURCHASE:
         case TransactionType.EXPENSE:
         case TransactionType.WITHDRAWAL:
+          currentBalance -= Number(t.amount);
           totalExpenses += Number(t.amount);
           break;
         case TransactionType.RETURN:
           const isCustomerReturn = customers.some(c => c.id === t.relatedId);
           if (isCustomerReturn) {
+            currentBalance -= Number(t.amount);
             totalExpenses += Number(t.amount);
           } else {
+            currentBalance += Number(t.amount);
             totalIncome += Number(t.amount);
           }
           break;
@@ -76,14 +50,13 @@ export const useTreasuryBalance = ({
     });
 
     return {
+      balance: currentBalance,
       totalIncome,
       totalExpenses,
       netFlow: totalIncome - totalExpenses
     };
-  }, [transactions, customers, suppliers]);
+  }, [transactions, customers, openingBalance]);
 
-  return {
-    balance,
-    ...summary
-  };
+  return result;
 };
+

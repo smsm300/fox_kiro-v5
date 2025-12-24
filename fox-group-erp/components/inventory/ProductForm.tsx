@@ -35,19 +35,47 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   // Add new category
   const handleAddCategory = () => {
-    if (newCategory.trim()) {
-      onFormChange('category', newCategory.trim());
+    const trimmedCategory = newCategory.trim();
+    console.log('🏷️ handleAddCategory called, value:', trimmedCategory);
+    if (trimmedCategory) {
+      console.log('✅ Adding new category:', trimmedCategory);
+      onFormChange('category', trimmedCategory);
       setNewCategory('');
       setShowNewCategory(false);
+    } else {
+      console.log('❌ Category is empty, not adding');
+      alert('يرجى إدخال اسم الفئة');
     }
   };
 
   // Add new unit
   const handleAddUnit = () => {
-    if (newUnit.trim()) {
-      onFormChange('unit', newUnit.trim());
+    const trimmedUnit = newUnit.trim();
+    console.log('📦 handleAddUnit called, value:', trimmedUnit);
+    if (trimmedUnit) {
+      console.log('✅ Adding new unit:', trimmedUnit);
+      onFormChange('unit', trimmedUnit);
       setNewUnit('');
       setShowNewUnit(false);
+    } else {
+      console.log('❌ Unit is empty, not adding');
+      alert('يرجى إدخال اسم الوحدة');
+    }
+  };
+
+  // Handle Enter key for category
+  const handleCategoryKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddCategory();
+    }
+  };
+
+  // Handle Enter key for unit
+  const handleUnitKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddUnit();
     }
   };
 
@@ -155,6 +183,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     type="text"
                     value={newCategory}
                     onChange={(e) => setNewCategory(e.target.value)}
+                    onKeyDown={handleCategoryKeyDown}
                     placeholder="اسم الفئة الجديدة"
                     className="flex-1 bg-dark-900 border border-dark-700 text-white px-3 py-2 rounded-lg focus:border-fox-500 outline-none"
                     autoFocus
@@ -183,6 +212,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     className="flex-1 bg-dark-900 border border-dark-700 text-white px-3 py-2 rounded-lg focus:border-fox-500 outline-none"
                   >
                     <option value="">اختر الفئة</option>
+                    {/* Show current category if it's not in the list */}
+                    {formData.category && !existingCategories.includes(formData.category) && (
+                      <option value={formData.category}>{formData.category} (جديدة)</option>
+                    )}
                     {existingCategories.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
                     ))}
@@ -218,6 +251,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     type="text"
                     value={newUnit}
                     onChange={(e) => setNewUnit(e.target.value)}
+                    onKeyDown={handleUnitKeyDown}
                     placeholder="اسم الوحدة الجديدة"
                     className="flex-1 bg-dark-900 border border-dark-700 text-white px-3 py-2 rounded-lg focus:border-fox-500 outline-none"
                     autoFocus
@@ -246,6 +280,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     className="flex-1 bg-dark-900 border border-dark-700 text-white px-3 py-2 rounded-lg focus:border-fox-500 outline-none"
                   >
                     <option value="">اختر الوحدة</option>
+                    {/* Show current unit if it's not in the list */}
+                    {formData.unit && !existingUnits.includes(formData.unit) && (
+                      <option value={formData.unit}>{formData.unit} (جديدة)</option>
+                    )}
                     {existingUnits.map((unit) => (
                       <option key={unit} value={unit}>{unit}</option>
                     ))}

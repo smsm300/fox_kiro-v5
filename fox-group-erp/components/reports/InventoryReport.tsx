@@ -7,7 +7,7 @@ interface InventoryReportProps {
   totalInventoryCost: number;
   totalInventoryValue: number;
   potentialProfit: number;
-  topSelling: Array<{name: string, qty: number, revenue: number}>;
+  topSelling: Array<{ name: string, qty: number, revenue: number }>;
   products: Product[];
 }
 
@@ -23,18 +23,18 @@ export const InventoryReport: React.FC<InventoryReportProps> = ({
   return (
     <div className="space-y-6 animate-in fade-in">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <SummaryCard 
-          title="تكلفة المخزون الحالية" 
+        <SummaryCard
+          title="تكلفة المخزون الحالية"
           value={`${totalInventoryCost.toLocaleString()} ج.م`}
           color="text-blue-400"
         />
-        <SummaryCard 
-          title="القيمة البيعية المتوقعة" 
+        <SummaryCard
+          title="القيمة البيعية المتوقعة"
           value={`${totalInventoryValue.toLocaleString()} ج.م`}
           color="text-emerald-400"
         />
-        <SummaryCard 
-          title="الربح المتوقع" 
+        <SummaryCard
+          title="الربح المتوقع"
           value={`${potentialProfit.toLocaleString()} ج.م`}
           color="text-fox-500"
         />
@@ -52,11 +52,10 @@ export const InventoryReport: React.FC<InventoryReportProps> = ({
               topSelling.map((item, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
-                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                      index === 0 ? 'bg-yellow-500 text-black' : 
-                      index === 1 ? 'bg-gray-400 text-black' : 
-                      'bg-orange-700 text-white'
-                    }`}>{index + 1}</span>
+                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${index === 0 ? 'bg-yellow-500 text-black' :
+                        index === 1 ? 'bg-gray-400 text-black' :
+                          'bg-orange-700 text-white'
+                      }`}>{index + 1}</span>
                     <span className="text-gray-300">{item.name}</span>
                   </div>
                   <span className="font-mono font-bold text-fox-400">{item.qty} قطعة</span>
@@ -65,17 +64,17 @@ export const InventoryReport: React.FC<InventoryReportProps> = ({
             )}
           </div>
         </div>
-        
+
         <div className="bg-dark-900 rounded-lg p-5 border border-dark-800">
           <h3 className="font-bold text-gray-200 mb-4 border-b border-dark-700 pb-2">
             توزيع المخزون
           </h3>
           <div className="h-64 flex items-center justify-center">
             {products.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minHeight={250}>
                 <PieChart>
                   <Pie
-                    data={products.slice(0, 5).map(p => ({name: p.name, value: p.quantity}))}
+                    data={products.slice(0, 5).map(p => ({ name: p.name, value: p.quantity }))}
                     dataKey="value"
                     nameKey="name"
                     cx="50%"
@@ -88,7 +87,7 @@ export const InventoryReport: React.FC<InventoryReportProps> = ({
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={{backgroundColor: '#1e293b', borderColor: '#334155', color: '#fff'}} />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#fff' }} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (

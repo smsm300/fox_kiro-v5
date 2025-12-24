@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Fox Group ERP - Global Styles */
 
 :root {
@@ -8,6 +12,39 @@
   --text-dark: #333333;
   --bg-light: #F5F5F5;
   --bg-white: #FFFFFF;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(13, 77, 77, 0.5);
+}
+
+.neon-border {
+  box-shadow: 0 0 10px rgba(247, 164, 0, 0.3);
 }
 
 /* Override Tailwind fox-500 with Fox Group colors */
@@ -46,45 +83,46 @@
 
 /* Mobile Responsive Improvements */
 @media (max-width: 768px) {
+
   /* Reduce padding on mobile */
   .md\:p-6 {
     padding: 1rem !important;
   }
-  
+
   .md\:p-4 {
     padding: 0.75rem !important;
   }
-  
+
   /* Stack flex items on mobile */
   .md\:flex-row {
     flex-direction: column !important;
   }
-  
+
   /* Full width buttons on mobile */
   button {
     width: 100% !important;
   }
-  
+
   /* Smaller text on mobile */
   .text-2xl {
     font-size: 1.5rem !important;
   }
-  
+
   .text-xl {
     font-size: 1.25rem !important;
   }
-  
+
   /* Hide some columns on mobile tables */
   .mobile-hidden {
     display: none !important;
   }
-  
+
   /* Scrollable tables on mobile */
   .overflow-x-auto {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
   }
-  
+
   /* Sidebar adjustments */
   aside {
     position: fixed !important;
@@ -95,11 +133,11 @@
     transform: translateX(-100%) !important;
     transition: transform 0.3s ease !important;
   }
-  
+
   aside.mobile-open {
     transform: translateX(0) !important;
   }
-  
+
   /* Mobile menu button */
   .mobile-menu-btn {
     display: block !important;
@@ -113,7 +151,7 @@
     border-radius: 0.5rem !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
   }
-  
+
   /* Overlay for mobile menu */
   .mobile-overlay {
     display: block !important;
@@ -129,7 +167,7 @@
   .mobile-menu-btn {
     display: none !important;
   }
-  
+
   .mobile-overlay {
     display: none !important;
   }
@@ -140,12 +178,12 @@
   .no-print {
     display: none !important;
   }
-  
+
   body {
     background: white !important;
     color: black !important;
   }
-  
+
   * {
     color: black !important;
   }

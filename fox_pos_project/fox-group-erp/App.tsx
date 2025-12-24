@@ -25,7 +25,7 @@ const loadState = <T,>(key: string, fallback: T): T => {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentSection, setCurrentSection] = useState(APP_SECTIONS.DASHBOARD);
-  
+
   // Current logged in user
   const [currentUser, setCurrentUser] = useState<User>(INITIAL_USERS[0]);
 
@@ -86,20 +86,20 @@ function App() {
 
   const handleCloseShift = (endCash: number) => {
     if (!settings.currentShiftId) return;
-    
+
     // Calculate expected cash
     // Start Cash + Sales (Cash) - Returns (Cash) - Expenses (Cash)
     const currentShift = shifts.find(s => s.id === settings.currentShiftId);
     if (!currentShift) return;
 
-    const shiftTransactions = transactions.filter(t => 
-       t.date >= currentShift.startTime && 
-       t.status !== 'pending' && t.status !== 'rejected'
+    const shiftTransactions = transactions.filter(t =>
+      t.date >= currentShift.startTime &&
+      t.status !== 'pending' && t.status !== 'rejected'
     );
 
     let cashMovement = 0;
     let salesTotal = 0;
-    
+
     // Detailed Breakdown
     const salesByMethod = {
       [PaymentMethod.CASH]: 0,
@@ -109,25 +109,25 @@ function App() {
     };
 
     shiftTransactions.forEach(t => {
-       if (t.type === TransactionType.SALE) {
-         if (salesByMethod[t.paymentMethod] !== undefined) {
-            salesByMethod[t.paymentMethod]! += t.amount;
-         }
-         salesTotal += t.amount;
-         
-         if (t.paymentMethod === PaymentMethod.CASH) {
-           cashMovement += t.amount;
-         }
-       } else if (t.type === TransactionType.RETURN) {
-         // Determine if customer return (money out) or purchase return (money in)
-         const isCustomerReturn = customers.some(c => c.id === t.relatedId);
-         if (isCustomerReturn && t.paymentMethod === PaymentMethod.CASH) cashMovement -= t.amount;
-         else if (!isCustomerReturn && t.paymentMethod === PaymentMethod.CASH) cashMovement += t.amount;
-       } else if ((t.type === TransactionType.PURCHASE || t.type === TransactionType.EXPENSE || t.type === TransactionType.WITHDRAWAL) && t.paymentMethod === PaymentMethod.CASH) {
-         cashMovement -= t.amount;
-       } else if (t.type === TransactionType.CAPITAL && t.paymentMethod === PaymentMethod.CASH) {
-         cashMovement += t.amount;
-       }
+      if (t.type === TransactionType.SALE) {
+        if (salesByMethod[t.paymentMethod] !== undefined) {
+          salesByMethod[t.paymentMethod]! += t.amount;
+        }
+        salesTotal += t.amount;
+
+        if (t.paymentMethod === PaymentMethod.CASH) {
+          cashMovement += t.amount;
+        }
+      } else if (t.type === TransactionType.RETURN) {
+        // Determine if customer return (money out) or purchase return (money in)
+        const isCustomerReturn = customers.some(c => c.id === t.relatedId);
+        if (isCustomerReturn && t.paymentMethod === PaymentMethod.CASH) cashMovement -= t.amount;
+        else if (!isCustomerReturn && t.paymentMethod === PaymentMethod.CASH) cashMovement += t.amount;
+      } else if ((t.type === TransactionType.PURCHASE || t.type === TransactionType.EXPENSE || t.type === TransactionType.WITHDRAWAL) && t.paymentMethod === PaymentMethod.CASH) {
+        cashMovement -= t.amount;
+      } else if (t.type === TransactionType.CAPITAL && t.paymentMethod === PaymentMethod.CASH) {
+        cashMovement += t.amount;
+      }
     });
 
     const expectedCash = currentShift.startCash + cashMovement;
@@ -159,7 +159,7 @@ function App() {
 
     // Determine Invoice ID: use provided one or next sequential number
     const finalInvoiceId = invoiceId || settings.nextInvoiceNumber.toString();
-    
+
     // 1. Create Sale Transaction
     const newTransaction: Transaction = {
       id: finalInvoiceId,
@@ -179,23 +179,23 @@ function App() {
 
     // 2. Handle Inventory & Expenses
     if (isDirectSale) {
-       // Direct Sale: Do NOT reduce stock. Instead, create an Expense transaction for COGS
-       const cogs = cartItems.reduce((sum, item) => sum + (item.costPrice * item.cartQuantity), 0);
-       const expenseTransaction: Transaction = {
-          id: `EXP-DS-${finalInvoiceId}`,
-          type: TransactionType.EXPENSE,
-          date: new Date().toISOString(),
-          amount: cogs,
-          paymentMethod: PaymentMethod.CASH, // Assume we paid cash to buy these items
-          category: 'تكلفة بضاعة مباعة (Direct)',
-          description: `تكلفة تشغيل (بضاعة بيع مباشر) لفاتورة #${finalInvoiceId}`,
-          status: 'completed',
-          shiftId: settings.currentShiftId
-       };
-       setTransactions(prev => [...prev, expenseTransaction]);
+      // Direct Sale: Do NOT reduce stock. Instead, create an Expense transaction for COGS
+      const cogs = cartItems.reduce((sum, item) => sum + (item.costPrice * item.cartQuantity), 0);
+      const expenseTransaction: Transaction = {
+        id: `EXP-DS-${finalInvoiceId}`,
+        type: TransactionType.EXPENSE,
+        date: new Date().toISOString(),
+        amount: cogs,
+        paymentMethod: PaymentMethod.CASH, // Assume we paid cash to buy these items
+        category: 'تكلفة بضاعة مباعة (Direct)',
+        description: `تكلفة تشغيل (بضاعة بيع مباشر) لفاتورة #${finalInvoiceId}`,
+        status: 'completed',
+        shiftId: settings.currentShiftId
+      };
+      setTransactions(prev => [...prev, expenseTransaction]);
     } else {
-       // Normal Sale: Reduce Inventory
-       const updatedProducts = products.map(p => {
+      // Normal Sale: Reduce Inventory
+      const updatedProducts = products.map(p => {
         const soldItem = cartItems.find(item => item.id === p.id);
         if (soldItem) {
           return { ...p, quantity: Math.max(0, p.quantity - soldItem.cartQuantity) };
@@ -207,14 +207,14 @@ function App() {
 
     // 3. Handle Customer Balance (Debt)
     if (paymentMethod === PaymentMethod.DEFERRED) {
-      setCustomers(prev => prev.map(c => 
+      setCustomers(prev => prev.map(c =>
         c.id === customerId ? { ...c, balance: c.balance - totalAmount } : c
       ));
     }
-    
+
     // 4. Update Settings (Invoice Number)
     if (!invoiceId || invoiceId === settings.nextInvoiceNumber.toString()) {
-       setSettings(prev => ({...prev, nextInvoiceNumber: prev.nextInvoiceNumber + 1}));
+      setSettings(prev => ({ ...prev, nextInvoiceNumber: prev.nextInvoiceNumber + 1 }));
     }
 
     logActivity('عملية بيع', `إضافة فاتورة بيع رقم ${newTransaction.id} بقيمة ${totalAmount}`);
@@ -243,14 +243,14 @@ function App() {
         const oldTotalValue = p.quantity * p.costPrice;
         const newTotalValue = purchasedItem.cartQuantity * purchasedItem.costPrice;
         const newQuantity = p.quantity + purchasedItem.cartQuantity;
-        
+
         // Avoid division by zero
-        const newAvgCost = newQuantity > 0 
-          ? (oldTotalValue + newTotalValue) / newQuantity 
+        const newAvgCost = newQuantity > 0
+          ? (oldTotalValue + newTotalValue) / newQuantity
           : purchasedItem.costPrice;
 
-        return { 
-          ...p, 
+        return {
+          ...p,
           quantity: newQuantity,
           costPrice: parseFloat(newAvgCost.toFixed(2)) // Store with 2 decimals
         };
@@ -260,7 +260,7 @@ function App() {
     setProducts(updatedProducts);
 
     if (paymentMethod === PaymentMethod.DEFERRED) {
-      setSuppliers(prev => prev.map(s => 
+      setSuppliers(prev => prev.map(s =>
         s.id === supplierId ? { ...s, balance: s.balance + totalAmount } : s
       ));
     }
@@ -271,7 +271,7 @@ function App() {
 
   const handleReturnTransaction = (originalTransaction: Transaction) => {
     if (originalTransaction.type !== TransactionType.SALE && originalTransaction.type !== TransactionType.PURCHASE) return;
-    
+
     const isSale = originalTransaction.type === TransactionType.SALE;
     const returnType = TransactionType.RETURN;
     const items = originalTransaction.items || [];
@@ -283,7 +283,7 @@ function App() {
       id: `RET-${Date.now()}`,
       type: returnType,
       date: new Date().toISOString(),
-      amount: originalTransaction.amount, 
+      amount: originalTransaction.amount,
       paymentMethod: originalTransaction.paymentMethod,
       description: `مرتجع للفاتورة رقم ${originalTransaction.id}`,
       relatedId: originalTransaction.relatedId,
@@ -298,9 +298,9 @@ function App() {
       const updatedProducts = products.map(p => {
         const item = items.find(i => i.id === p.id);
         if (item) {
-          return { 
-            ...p, 
-            quantity: isSale 
+          return {
+            ...p,
+            quantity: isSale
               ? p.quantity + item.cartQuantity // Sales return: Increase stock
               : Math.max(0, p.quantity - item.cartQuantity) // Purchase return: Decrease stock
           };
@@ -312,11 +312,11 @@ function App() {
 
     if (originalTransaction.paymentMethod === PaymentMethod.DEFERRED) {
       if (isSale) {
-        setCustomers(prev => prev.map(c => 
+        setCustomers(prev => prev.map(c =>
           c.id === originalTransaction.relatedId ? { ...c, balance: c.balance + originalTransaction.amount } : c
         ));
       } else {
-        setSuppliers(prev => prev.map(s => 
+        setSuppliers(prev => prev.map(s =>
           s.id === originalTransaction.relatedId ? { ...s, balance: s.balance - originalTransaction.amount } : s
         ));
       }
@@ -329,7 +329,7 @@ function App() {
   const handleAddExpense = (amount: number, description: string, category: string) => {
     const threshold = 2000;
     const isPending = amount > threshold && currentUser.role !== 'admin';
-    
+
     const newTransaction: Transaction = {
       id: `EXP-${Date.now()}`,
       type: TransactionType.EXPENSE,
@@ -341,9 +341,9 @@ function App() {
       status: isPending ? 'pending' : 'completed',
       shiftId: settings.currentShiftId
     };
-    
+
     setTransactions(prev => [...prev, newTransaction]);
-    
+
     if (isPending) {
       logActivity('مصروفات', `طلب موافقة على مصروف بقيمة ${amount}`);
       alert('تم تسجيل الطلب، بانتظار موافقة المدير (المبلغ يتجاوز الحد المسموح).');
@@ -370,52 +370,52 @@ function App() {
   };
 
   const handleApproveTransaction = (id: string) => {
-    setTransactions(prev => prev.map(t => 
-       t.id === id ? { ...t, status: 'completed' } : t
+    setTransactions(prev => prev.map(t =>
+      t.id === id ? { ...t, status: 'completed' } : t
     ));
     logActivity('موافقة', `تمت الموافقة على المعاملة ${id}`);
   };
 
   const handleRejectTransaction = (id: string) => {
-    setTransactions(prev => prev.map(t => 
-       t.id === id ? { ...t, status: 'rejected' } : t
+    setTransactions(prev => prev.map(t =>
+      t.id === id ? { ...t, status: 'rejected' } : t
     ));
     logActivity('رفض', `تم رفض المعاملة ${id}`);
   };
 
   const handleDebtSettlement = (type: 'customer' | 'supplier', id: number, amount: number, notes: string) => {
     const isCustomer = type === 'customer';
-    const transType = isCustomer ? TransactionType.SALE : TransactionType.PURCHASE; 
-    
+    const transType = isCustomer ? TransactionType.SALE : TransactionType.PURCHASE;
+
     const newTransaction: Transaction = {
-       id: `SETTLE-${Date.now()}`,
-       type: transType,
-       date: new Date().toISOString(),
-       amount: amount,
-       paymentMethod: PaymentMethod.CASH,
-       description: isCustomer 
-          ? `تحصيل دفعة من حساب العميل (سداد مديونية): ${notes}` 
-          : `سداد دفعة للمورد (سداد مديونية): ${notes}`,
-       category: 'تسوية مديونية',
-       relatedId: id,
-       status: 'completed',
-       shiftId: settings.currentShiftId
+      id: `SETTLE-${Date.now()}`,
+      type: transType,
+      date: new Date().toISOString(),
+      amount: amount,
+      paymentMethod: PaymentMethod.CASH,
+      description: isCustomer
+        ? `تحصيل دفعة من حساب العميل (سداد مديونية): ${notes}`
+        : `سداد دفعة للمورد (سداد مديونية): ${notes}`,
+      category: 'تسوية مديونية',
+      relatedId: id,
+      status: 'completed',
+      shiftId: settings.currentShiftId
     };
 
     setTransactions(prev => [...prev, newTransaction]);
 
     if (isCustomer) {
-       setCustomers(prev => prev.map(c => 
-          c.id === id ? { ...c, balance: c.balance + amount } : c
-       ));
-       logActivity('تحصيل', `استلام مبلغ ${amount} من العميل ID: ${id}`);
+      setCustomers(prev => prev.map(c =>
+        c.id === id ? { ...c, balance: c.balance + amount } : c
+      ));
+      logActivity('تحصيل', `استلام مبلغ ${amount} من العميل ID: ${id}`);
     } else {
-       setSuppliers(prev => prev.map(s => 
-          s.id === id ? { ...s, balance: s.balance - amount } : s
-       ));
-       logActivity('سداد', `دفع مبلغ ${amount} للمورد ID: ${id}`);
+      setSuppliers(prev => prev.map(s =>
+        s.id === id ? { ...s, balance: s.balance - amount } : s
+      ));
+      logActivity('سداد', `دفع مبلغ ${amount} للمورد ID: ${id}`);
     }
-    
+
     alert('تم تسجيل العملية وتحديث الرصيد بنجاح');
   };
 
@@ -423,7 +423,7 @@ function App() {
     // 1. Update Product
     const product = products.find(p => p.id === productId);
     if (!product) return;
-    
+
     const newQty = product.quantity + quantityDiff;
     if (newQty < 0) {
       alert('لا يمكن أن يصبح المخزون بالسالب');
@@ -440,7 +440,7 @@ function App() {
       amount: 0, // Zero value transaction for now, or could calculate cost loss/gain
       paymentMethod: PaymentMethod.CASH,
       description: `تسوية مخزون لـ ${product.name}: ${quantityDiff > 0 ? '+' : ''}${quantityDiff} ${product.unit}. السبب: ${reason}`,
-      items: [{...product, cartQuantity: Math.abs(quantityDiff), discount: 0}],
+      items: [{ ...product, cartQuantity: Math.abs(quantityDiff), discount: 0 }],
       status: 'completed',
       shiftId: settings.currentShiftId
     };
@@ -467,7 +467,7 @@ function App() {
   const handleConvertQuoteToInvoice = (quotationId: string) => {
     const quote = quotations.find(q => q.id === quotationId);
     if (!quote) return;
-    
+
     const stockIssues = quote.items.filter(item => {
       const product = products.find(p => p.id === item.id);
       return !product || product.quantity < item.cartQuantity;
@@ -475,7 +475,7 @@ function App() {
 
     if (stockIssues.length > 0) {
       alert(`تنبيه: بعض المنتجات في العرض غير متوفرة بالكمية المطلوبة في المخزن: ${stockIssues.map(i => i.name).join(', ')}`);
-      if(!window.confirm('هل تريد المتابعة رغم نقص المخزون؟ (سيصبح المخزون بالسالب)')) return;
+      if (!window.confirm('هل تريد المتابعة رغم نقص المخزون؟ (سيصبح المخزون بالسالب)')) return;
     }
 
     handleSaleComplete(quote.items, quote.customerId, PaymentMethod.CASH, quote.totalAmount);
@@ -502,12 +502,12 @@ function App() {
     const hasTransactions = transactions.some(t => t.relatedId === id);
     const customer = customers.find(c => c.id === id);
     if (hasTransactions || (customer && customer.balance !== 0)) {
-       alert('لا يمكن حذف هذا العميل لوجود معاملات سابقة أو رصيد غير صفري. يرجى تصفية الحساب أولاً.');
-       return;
+      alert('لا يمكن حذف هذا العميل لوجود معاملات سابقة أو رصيد غير صفري. يرجى تصفية الحساب أولاً.');
+      return;
     }
     if (window.confirm('هل أنت متأكد من حذف هذا العميل؟')) {
-       setCustomers(prev => prev.filter(c => c.id !== id));
-       logActivity('حذف عميل', `حذف العميل ID: ${id}`);
+      setCustomers(prev => prev.filter(c => c.id !== id));
+      logActivity('حذف عميل', `حذف العميل ID: ${id}`);
     }
   };
 
@@ -526,12 +526,12 @@ function App() {
     const hasTransactions = transactions.some(t => t.relatedId === id);
     const supplier = suppliers.find(s => s.id === id);
     if (hasTransactions || (supplier && supplier.balance !== 0)) {
-       alert('لا يمكن حذف هذا المورد لوجود معاملات سابقة أو رصيد غير صفري.');
-       return;
+      alert('لا يمكن حذف هذا المورد لوجود معاملات سابقة أو رصيد غير صفري.');
+      return;
     }
     if (window.confirm('هل أنت متأكد من حذف هذا المورد؟')) {
-       setSuppliers(prev => prev.filter(s => s.id !== id));
-       logActivity('حذف مورد', `حذف المورد ID: ${id}`);
+      setSuppliers(prev => prev.filter(s => s.id !== id));
+      logActivity('حذف مورد', `حذف المورد ID: ${id}`);
     }
   };
 
@@ -552,12 +552,12 @@ function App() {
       alert('لا يمكن حذف المنتج لأنه موجود في فواتير سابقة. يمكنك تعديل كميته لصفر بدلاً من ذلك.');
       return;
     }
-    if(window.confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+    if (window.confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
       setProducts(prev => prev.filter(p => p.id !== id));
       logActivity('حذف منتج', `حذف المنتج ID: ${id}`);
     }
   };
-  
+
   const handleUpdateSettings = (newSettings: AppSettings) => {
     setSettings(newSettings);
     logActivity('إعدادات', 'تحديث إعدادات النظام');
@@ -574,9 +574,9 @@ function App() {
     setUsers(prev => prev.filter(u => u.id !== userId));
     logActivity('مستخدمين', `حذف مستخدم ID: ${userId}`);
   };
-  
+
   const handleChangePassword = (newPassword: string) => {
-    setUsers(prev => prev.map(u => 
+    setUsers(prev => prev.map(u =>
       u.id === currentUser.id ? { ...u, password: newPassword } : u
     ));
     setCurrentUser(prev => ({ ...prev, password: newPassword }));
@@ -636,8 +636,8 @@ function App() {
     setShifts([]);
     setSettings(prev => ({ ...prev, currentShiftId: undefined }));
     // Reset Balances
-    setCustomers(prev => prev.map(c => ({...c, balance: 0})));
-    setSuppliers(prev => prev.map(s => ({...s, balance: 0})));
+    setCustomers(prev => prev.map(c => ({ ...c, balance: 0 })));
+    setSuppliers(prev => prev.map(s => ({ ...s, balance: 0 })));
     logActivity('مسح معاملات', 'تم مسح سجل المعاملات وتصفية الحسابات');
     alert('تم مسح جميع المعاملات وتصفية أرصدة العملاء والموردين بنجاح. المخزون والمنتجات كما هي.');
   };
@@ -665,18 +665,18 @@ function App() {
       case APP_SECTIONS.DASHBOARD:
         return <Dashboard products={products} transactions={transactions} customers={customers} currentUser={currentUser} settings={settings} />;
       case APP_SECTIONS.SALES:
-        return <Sales 
-                  products={products} 
-                  customers={customers} 
-                  transactions={transactions} 
-                  onCompleteSale={handleSaleComplete} 
-                  onReturnTransaction={handleReturnTransaction} 
-                  settings={settings} 
-                  currentUser={currentUser}
-                  onOpenShift={handleOpenShift}
-                  onCloseShift={handleCloseShift}
-                  onAddCustomer={handleAddCustomer}
-               />;
+        return <Sales
+          products={products}
+          customers={customers}
+          transactions={transactions}
+          onCompleteSale={handleSaleComplete}
+          onReturnTransaction={handleReturnTransaction}
+          settings={settings}
+          currentUser={currentUser}
+          onOpenShift={handleOpenShift}
+          onCloseShift={handleCloseShift}
+          onAddCustomer={handleAddCustomer}
+        />;
       case APP_SECTIONS.PURCHASES:
         return <Purchases products={products} suppliers={suppliers} transactions={transactions} onCompletePurchase={handlePurchaseComplete} onReturnTransaction={handleReturnTransaction} />;
       case APP_SECTIONS.QUOTATIONS:
@@ -684,19 +684,19 @@ function App() {
       case APP_SECTIONS.INVENTORY:
         return <Inventory products={products} transactions={transactions} onAddProduct={handleAddProduct} onUpdateProduct={handleUpdateProduct} onDeleteProduct={handleDeleteProduct} onStockAdjustment={handleStockAdjustment} settings={settings} />;
       case APP_SECTIONS.TREASURY:
-        return <Treasury 
-                  transactions={transactions} 
-                  customers={customers} 
-                  suppliers={suppliers} 
-                  onAddExpense={handleAddExpense} 
-                  onReturnTransaction={handleReturnTransaction} 
-                  onDebtSettlement={handleDebtSettlement}
-                  settings={settings} 
-                  currentUser={currentUser}
-                  onApprove={handleApproveTransaction}
-                  onReject={handleRejectTransaction}
-                  onCapitalTransaction={handleCapitalTransaction}
-               />;
+        return <Treasury
+          transactions={transactions}
+          customers={customers}
+          suppliers={suppliers}
+          onAddExpense={handleAddExpense}
+          onReturnTransaction={handleReturnTransaction}
+          onDebtSettlement={handleDebtSettlement}
+          settings={settings}
+          currentUser={currentUser}
+          onApprove={handleApproveTransaction}
+          onReject={handleRejectTransaction}
+          onCapitalTransaction={handleCapitalTransaction}
+        />;
       case APP_SECTIONS.CUSTOMERS:
         return <Customers customers={customers} transactions={transactions} onAddCustomer={handleAddCustomer} onUpdateCustomer={handleUpdateCustomer} onDeleteCustomer={handleDeleteCustomer} settings={settings} />;
       case APP_SECTIONS.SUPPLIERS:
@@ -721,10 +721,10 @@ function App() {
   }
 
   return (
-    <Layout 
-      currentSection={currentSection} 
-      onNavigate={setCurrentSection} 
-      alertsCount={lowStockProducts.length} 
+    <Layout
+      currentSection={currentSection}
+      onNavigate={setCurrentSection}
+      alertsCount={lowStockProducts.length}
       lowStockItems={lowStockProducts}
       currentUser={currentUser}
       onLogout={() => {

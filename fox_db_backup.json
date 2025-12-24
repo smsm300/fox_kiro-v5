@@ -1,0 +1,2696 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add blacklisted token",
+    "content_type": 7,
+    "codename": "add_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change blacklisted token",
+    "content_type": 7,
+    "codename": "change_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete blacklisted token",
+    "content_type": 7,
+    "codename": "delete_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view blacklisted token",
+    "content_type": 7,
+    "codename": "view_blacklistedtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add outstanding token",
+    "content_type": 8,
+    "codename": "add_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change outstanding token",
+    "content_type": 8,
+    "codename": "change_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete outstanding token",
+    "content_type": 8,
+    "codename": "delete_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view outstanding token",
+    "content_type": 8,
+    "codename": "view_outstandingtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add عميل",
+    "content_type": 9,
+    "codename": "add_customer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change عميل",
+    "content_type": 9,
+    "codename": "change_customer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete عميل",
+    "content_type": 9,
+    "codename": "delete_customer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view عميل",
+    "content_type": 9,
+    "codename": "view_customer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add مورد",
+    "content_type": 10,
+    "codename": "add_supplier"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change مورد",
+    "content_type": 10,
+    "codename": "change_supplier"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete مورد",
+    "content_type": 10,
+    "codename": "delete_supplier"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view مورد",
+    "content_type": 10,
+    "codename": "view_supplier"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add منتج",
+    "content_type": 11,
+    "codename": "add_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change منتج",
+    "content_type": 11,
+    "codename": "change_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete منتج",
+    "content_type": 11,
+    "codename": "delete_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view منتج",
+    "content_type": 11,
+    "codename": "view_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add فاتورة مبيعات",
+    "content_type": 12,
+    "codename": "add_salesinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change فاتورة مبيعات",
+    "content_type": 12,
+    "codename": "change_salesinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete فاتورة مبيعات",
+    "content_type": 12,
+    "codename": "delete_salesinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view فاتورة مبيعات",
+    "content_type": 12,
+    "codename": "view_salesinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add بند فاتورة مبيعات",
+    "content_type": 13,
+    "codename": "add_salesinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change بند فاتورة مبيعات",
+    "content_type": 13,
+    "codename": "change_salesinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete بند فاتورة مبيعات",
+    "content_type": 13,
+    "codename": "delete_salesinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view بند فاتورة مبيعات",
+    "content_type": 13,
+    "codename": "view_salesinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add مرتجع مبيعات",
+    "content_type": 14,
+    "codename": "add_salesreturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change مرتجع مبيعات",
+    "content_type": 14,
+    "codename": "change_salesreturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete مرتجع مبيعات",
+    "content_type": 14,
+    "codename": "delete_salesreturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view مرتجع مبيعات",
+    "content_type": 14,
+    "codename": "view_salesreturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add بند مرتجع مبيعات",
+    "content_type": 15,
+    "codename": "add_salesreturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change بند مرتجع مبيعات",
+    "content_type": 15,
+    "codename": "change_salesreturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete بند مرتجع مبيعات",
+    "content_type": 15,
+    "codename": "delete_salesreturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view بند مرتجع مبيعات",
+    "content_type": 15,
+    "codename": "view_salesreturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add فاتورة مشتريات",
+    "content_type": 16,
+    "codename": "add_purchaseinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change فاتورة مشتريات",
+    "content_type": 16,
+    "codename": "change_purchaseinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete فاتورة مشتريات",
+    "content_type": 16,
+    "codename": "delete_purchaseinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view فاتورة مشتريات",
+    "content_type": 16,
+    "codename": "view_purchaseinvoice"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add بند فاتورة مشتريات",
+    "content_type": 17,
+    "codename": "add_purchaseinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change بند فاتورة مشتريات",
+    "content_type": 17,
+    "codename": "change_purchaseinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete بند فاتورة مشتريات",
+    "content_type": 17,
+    "codename": "delete_purchaseinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view بند فاتورة مشتريات",
+    "content_type": 17,
+    "codename": "view_purchaseinvoiceitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add مرتجع مشتريات",
+    "content_type": 18,
+    "codename": "add_purchasereturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change مرتجع مشتريات",
+    "content_type": 18,
+    "codename": "change_purchasereturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete مرتجع مشتريات",
+    "content_type": 18,
+    "codename": "delete_purchasereturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view مرتجع مشتريات",
+    "content_type": 18,
+    "codename": "view_purchasereturn"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add بند مرتجع مشتريات",
+    "content_type": 19,
+    "codename": "add_purchasereturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change بند مرتجع مشتريات",
+    "content_type": 19,
+    "codename": "change_purchasereturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete بند مرتجع مشتريات",
+    "content_type": 19,
+    "codename": "delete_purchasereturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view بند مرتجع مشتريات",
+    "content_type": 19,
+    "codename": "view_purchasereturnitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add حركة مخزون",
+    "content_type": 20,
+    "codename": "add_inventorymovement"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change حركة مخزون",
+    "content_type": 20,
+    "codename": "change_inventorymovement"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete حركة مخزون",
+    "content_type": 20,
+    "codename": "delete_inventorymovement"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view حركة مخزون",
+    "content_type": 20,
+    "codename": "view_inventorymovement"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add دين",
+    "content_type": 21,
+    "codename": "add_debt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change دين",
+    "content_type": 21,
+    "codename": "change_debt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete دين",
+    "content_type": 21,
+    "codename": "delete_debt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view دين",
+    "content_type": 21,
+    "codename": "view_debt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add سداد دين",
+    "content_type": 22,
+    "codename": "add_debtpayment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change سداد دين",
+    "content_type": 22,
+    "codename": "change_debtpayment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete سداد دين",
+    "content_type": 22,
+    "codename": "delete_debtpayment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view سداد دين",
+    "content_type": 22,
+    "codename": "view_debtpayment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add مصروف شهري",
+    "content_type": 23,
+    "codename": "add_monthlyexpense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change مصروف شهري",
+    "content_type": 23,
+    "codename": "change_monthlyexpense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete مصروف شهري",
+    "content_type": 23,
+    "codename": "delete_monthlyexpense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view مصروف شهري",
+    "content_type": 23,
+    "codename": "view_monthlyexpense"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add تكلفة تشغيل",
+    "content_type": 24,
+    "codename": "add_operatingcost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change تكلفة تشغيل",
+    "content_type": 24,
+    "codename": "change_operatingcost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete تكلفة تشغيل",
+    "content_type": 24,
+    "codename": "delete_operatingcost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view تكلفة تشغيل",
+    "content_type": 24,
+    "codename": "view_operatingcost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add حركة خزينة",
+    "content_type": 25,
+    "codename": "add_treasury"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change حركة خزينة",
+    "content_type": 25,
+    "codename": "change_treasury"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete حركة خزينة",
+    "content_type": 25,
+    "codename": "delete_treasury"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view حركة خزينة",
+    "content_type": 25,
+    "codename": "view_treasury"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can add ملخص المبيعات اليومي",
+    "content_type": 26,
+    "codename": "add_dailysalessummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can change ملخص المبيعات اليومي",
+    "content_type": 26,
+    "codename": "change_dailysalessummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can delete ملخص المبيعات اليومي",
+    "content_type": 26,
+    "codename": "delete_dailysalessummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can view ملخص المبيعات اليومي",
+    "content_type": 26,
+    "codename": "view_dailysalessummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can add تقرير المخزون",
+    "content_type": 27,
+    "codename": "add_inventorysummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can change تقرير المخزون",
+    "content_type": 27,
+    "codename": "change_inventorysummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can delete تقرير المخزون",
+    "content_type": 27,
+    "codename": "delete_inventorysummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can view تقرير المخزون",
+    "content_type": 27,
+    "codename": "view_inventorysummary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can add تقرير الديون",
+    "content_type": 28,
+    "codename": "add_outstandingdebt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can change تقرير الديون",
+    "content_type": 28,
+    "codename": "change_outstandingdebt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can delete تقرير الديون",
+    "content_type": 28,
+    "codename": "delete_outstandingdebt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can view تقرير الديون",
+    "content_type": 28,
+    "codename": "view_outstandingdebt"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can add تقرير الربحية",
+    "content_type": 29,
+    "codename": "add_profitabilityreport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can change تقرير الربحية",
+    "content_type": 29,
+    "codename": "change_profitabilityreport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can delete تقرير الربحية",
+    "content_type": 29,
+    "codename": "delete_profitabilityreport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can view تقرير الربحية",
+    "content_type": 29,
+    "codename": "view_profitabilityreport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 117,
+  "fields": {
+    "name": "Can add تقرير الخزينة",
+    "content_type": 30,
+    "codename": "add_treasurybalancereport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 118,
+  "fields": {
+    "name": "Can change تقرير الخزينة",
+    "content_type": 30,
+    "codename": "change_treasurybalancereport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 119,
+  "fields": {
+    "name": "Can delete تقرير الخزينة",
+    "content_type": 30,
+    "codename": "delete_treasurybalancereport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 120,
+  "fields": {
+    "name": "Can view تقرير الخزينة",
+    "content_type": 30,
+    "codename": "view_treasurybalancereport"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 121,
+  "fields": {
+    "name": "Can add عرض سعر",
+    "content_type": 31,
+    "codename": "add_quotation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 122,
+  "fields": {
+    "name": "Can change عرض سعر",
+    "content_type": 31,
+    "codename": "change_quotation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 123,
+  "fields": {
+    "name": "Can delete عرض سعر",
+    "content_type": 31,
+    "codename": "delete_quotation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 124,
+  "fields": {
+    "name": "Can view عرض سعر",
+    "content_type": 31,
+    "codename": "view_quotation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 125,
+  "fields": {
+    "name": "Can add بند عرض سعر",
+    "content_type": 32,
+    "codename": "add_quotationitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 126,
+  "fields": {
+    "name": "Can change بند عرض سعر",
+    "content_type": 32,
+    "codename": "change_quotationitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 127,
+  "fields": {
+    "name": "Can delete بند عرض سعر",
+    "content_type": 32,
+    "codename": "delete_quotationitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 128,
+  "fields": {
+    "name": "Can view بند عرض سعر",
+    "content_type": 32,
+    "codename": "view_quotationitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 129,
+  "fields": {
+    "name": "Can add مستخدم النظام",
+    "content_type": 33,
+    "codename": "add_posuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 130,
+  "fields": {
+    "name": "Can change مستخدم النظام",
+    "content_type": 33,
+    "codename": "change_posuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 131,
+  "fields": {
+    "name": "Can delete مستخدم النظام",
+    "content_type": 33,
+    "codename": "delete_posuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 132,
+  "fields": {
+    "name": "Can view مستخدم النظام",
+    "content_type": 33,
+    "codename": "view_posuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 133,
+  "fields": {
+    "name": "Can add وردية",
+    "content_type": 34,
+    "codename": "add_shift"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 134,
+  "fields": {
+    "name": "Can change وردية",
+    "content_type": 34,
+    "codename": "change_shift"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 135,
+  "fields": {
+    "name": "Can delete وردية",
+    "content_type": 34,
+    "codename": "delete_shift"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 136,
+  "fields": {
+    "name": "Can view وردية",
+    "content_type": 34,
+    "codename": "view_shift"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 137,
+  "fields": {
+    "name": "Can add معاملة",
+    "content_type": 35,
+    "codename": "add_transaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 138,
+  "fields": {
+    "name": "Can change معاملة",
+    "content_type": 35,
+    "codename": "change_transaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 139,
+  "fields": {
+    "name": "Can delete معاملة",
+    "content_type": 35,
+    "codename": "delete_transaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 140,
+  "fields": {
+    "name": "Can view معاملة",
+    "content_type": 35,
+    "codename": "view_transaction"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 141,
+  "fields": {
+    "name": "Can add إعدادات التطبيق",
+    "content_type": 36,
+    "codename": "add_appsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 142,
+  "fields": {
+    "name": "Can change إعدادات التطبيق",
+    "content_type": 36,
+    "codename": "change_appsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 143,
+  "fields": {
+    "name": "Can delete إعدادات التطبيق",
+    "content_type": 36,
+    "codename": "delete_appsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 144,
+  "fields": {
+    "name": "Can view إعدادات التطبيق",
+    "content_type": 36,
+    "codename": "view_appsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 145,
+  "fields": {
+    "name": "Can add سجل نشاط",
+    "content_type": 37,
+    "codename": "add_activitylog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 146,
+  "fields": {
+    "name": "Can change سجل نشاط",
+    "content_type": 37,
+    "codename": "change_activitylog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 147,
+  "fields": {
+    "name": "Can delete سجل نشاط",
+    "content_type": 37,
+    "codename": "delete_activitylog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 148,
+  "fields": {
+    "name": "Can view سجل نشاط",
+    "content_type": 37,
+    "codename": "view_activitylog"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "manager",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "cashier",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "accountant",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "regular",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 5,
+  "fields": {
+    "name": "inventory_monitor",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$8N3rmkYP5R7B9K4XJG7ZdF$Qe7rF4GCgWa/OObvdBVGVAbOotJvJp+C0wp4BJwKFPs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "accountant",
+    "first_name": "محاسب",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-03T23:49:55.852Z",
+    "groups": [
+      3
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$xf1vTjcBmrdj1sdq2FgSYC$8gHjhXcDF/2AcGInOSuGRItUolZeLmK31W3DLDcOX64=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager",
+    "first_name": "مدير",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-04T01:38:10.305Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$spFSxhu1f1vaXZ0VSKLIvd$gFSHArLHrp8xuCAwTqZ9gfpPhti5kYx+WfwTtELH6o8=",
+    "last_login": "2025-12-24T10:51:17.554Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@foxgroup.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-04T12:37:26.264Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$eSoDUhqHDRVnjLAo02pTIn$VUtN5LYbYvcj1VDieKnybVjEKyq7YosEUu95NnrwEi8=",
+    "last_login": "2025-12-05T07:37:15.389Z",
+    "is_superuser": false,
+    "username": "cashier",
+    "first_name": "",
+    "last_name": "",
+    "email": "cashier@foxgroup.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-04T12:37:27.214Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$gh4vrHbWeEOszcUidX4fiH$iU8deLsxBSpity9xC34tegAgeWXC5mJMqANBbhJS34c=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "superadmin",
+    "first_name": "Eslam Eldeep",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-04T13:09:16.086Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "token_blacklist",
+    "model": "blacklistedtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "token_blacklist",
+    "model": "outstandingtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "customers",
+    "model": "customer"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "suppliers",
+    "model": "supplier"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "products",
+    "model": "product"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "sales",
+    "model": "salesinvoice"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "sales",
+    "model": "salesinvoiceitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "sales",
+    "model": "salesreturn"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "sales",
+    "model": "salesreturnitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "purchases",
+    "model": "purchaseinvoice"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "purchases",
+    "model": "purchaseinvoiceitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "purchases",
+    "model": "purchasereturn"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "purchases",
+    "model": "purchasereturnitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 20,
+  "fields": {
+    "app_label": "inventory",
+    "model": "inventorymovement"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 21,
+  "fields": {
+    "app_label": "treasury",
+    "model": "debt"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 22,
+  "fields": {
+    "app_label": "treasury",
+    "model": "debtpayment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 23,
+  "fields": {
+    "app_label": "treasury",
+    "model": "monthlyexpense"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 24,
+  "fields": {
+    "app_label": "treasury",
+    "model": "operatingcost"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 25,
+  "fields": {
+    "app_label": "treasury",
+    "model": "treasury"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
+  "fields": {
+    "app_label": "reports",
+    "model": "dailysalessummary"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 27,
+  "fields": {
+    "app_label": "reports",
+    "model": "inventorysummary"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 28,
+  "fields": {
+    "app_label": "reports",
+    "model": "outstandingdebt"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 29,
+  "fields": {
+    "app_label": "reports",
+    "model": "profitabilityreport"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 30,
+  "fields": {
+    "app_label": "reports",
+    "model": "treasurybalancereport"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 31,
+  "fields": {
+    "app_label": "quotations",
+    "model": "quotation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 32,
+  "fields": {
+    "app_label": "quotations",
+    "model": "quotationitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 33,
+  "fields": {
+    "app_label": "users",
+    "model": "posuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 34,
+  "fields": {
+    "app_label": "api",
+    "model": "shift"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 35,
+  "fields": {
+    "app_label": "api",
+    "model": "transaction"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 36,
+  "fields": {
+    "app_label": "api",
+    "model": "appsettings"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 37,
+  "fields": {
+    "app_label": "api",
+    "model": "activitylog"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kdyre1pv7bx59aolyf2ghdzrrgqol47g",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln2-k9JzxmstXdDAsiR4qRC3B0ipYD2zcx7iYzbOuat85InEmehxel3K1gf3HZAd2y3Wda5rctU5K7Ig3Z5nYmfl8P9Oxixj98aAlutMEJBSkH5IUEp4NlhTIGct-RTgVoNGq0VObCVDZCp7DwOGMX7A9poN_c:1vQqZB:wzFl0Ym05RoEmGe7vKbUNoUrR13ppWiWTkvkVY79t3o",
+    "expire_date": "2025-12-17T17:23:01.492Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kqm0k9lgrdid1ur78rkj70livni6fcfy",
+  "fields": {
+    "session_data": "e30:1vQqT6:8M0nTAE-jn0-aYrlqZuj8Y2ufGbRx3q40oQw2ZSrUn0",
+    "expire_date": "2025-12-17T17:16:44.871Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mn2mvmrern74uvgxpi2em54c4ett4y6f",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSF-ZiFlep_BYmEJTiKQjF1FuXtsyUVSTDPvzbzZFLa1TFunZZoTuzJgl98OQ3xSPUB6hHpvPLa6LjPyQ-En7XxsiV630_07KKGXfW3RGhxc2AMkrfAKpR_Qq0hSu5QjeHKotQCnEhiTDObBZWFBgEIi9vkC1d43jw:1vSemR:Mym4tesohiqBkr5_GouxlVF-SG4iw3Vt6ZEVoLABjDg",
+    "expire_date": "2025-12-22T17:12:11.164Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yd2q184eqskxlm2c51z67ojfqh3nebff",
+  "fields": {
+    "session_data": "e30:1vQqQd:nhZkkCyzKNBM-_dSvHyqbwrKfYbZfpPpS3f8O0ALPUA",
+    "expire_date": "2025-12-17T17:14:11.121Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "jti": "2e2e928f5dd342039648ea22eaa94490",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjE4NCwiaWF0IjoxNzY0ODUxMzg0LCJqdGkiOiIyZTJlOTI4ZjVkZDM0MjAzOTY0OGVhMjJlYWE5NDQ5MCIsInVzZXJfaWQiOjV9.lRGWSYjq27INsD4ljymmd-AvSMhOfQSj9eVburwTMfk",
+    "created_at": "2025-12-04T12:29:44.739Z",
+    "expires_at": "2025-12-11T12:29:44Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 2,
+  "fields": {
+    "user": null,
+    "jti": "0ac365aaf81c4478a5d5b7f8e6f268f5",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjE5MywiaWF0IjoxNzY0ODUxMzkzLCJqdGkiOiIwYWMzNjVhYWY4MWM0NDc4YTVkNWI3ZjhlNmYyNjhmNSIsInVzZXJfaWQiOjV9.IAWBca6tgcoY6EC-y6UGQcf8ZeqFJcbxzGFw0BpF60A",
+    "created_at": "2025-12-04T12:29:53.744Z",
+    "expires_at": "2025-12-11T12:29:53Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "jti": "8e2388d290a54901b5539c6cc3e64e7b",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjIwOCwiaWF0IjoxNzY0ODUxNDA4LCJqdGkiOiI4ZTIzODhkMjkwYTU0OTAxYjU1MzljNmNjM2U2NGU3YiIsInVzZXJfaWQiOjV9.6AH76D65y-OYQYabEBQu3XFbg25Rt8Bv80v-4drlHL4",
+    "created_at": "2025-12-04T12:30:08.328Z",
+    "expires_at": "2025-12-11T12:30:08Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 4,
+  "fields": {
+    "user": null,
+    "jti": "08de613c61df40abbcbe3d2301707a36",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjI3MywiaWF0IjoxNzY0ODUxNDczLCJqdGkiOiIwOGRlNjEzYzYxZGY0MGFiYmNiZTNkMjMwMTcwN2EzNiIsInVzZXJfaWQiOjV9.ARWXS_-Gk8uqb_h_DX5UDxAGk3FkNgqKB5AQMSoYDp8",
+    "created_at": "2025-12-04T12:31:13.458Z",
+    "expires_at": "2025-12-11T12:31:13Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 5,
+  "fields": {
+    "user": null,
+    "jti": "3cfbac176b38438da1847d66ce00d834",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjMzMCwiaWF0IjoxNzY0ODUxNTMwLCJqdGkiOiIzY2ZiYWMxNzZiMzg0MzhkYTE4NDdkNjZjZTAwZDgzNCIsInVzZXJfaWQiOjZ9.KFErnbrsKEGP7UeWIVSHdbe-Qr9bIRnuSy1Cr7T8UBw",
+    "created_at": "2025-12-04T12:32:10.857Z",
+    "expires_at": "2025-12-11T12:32:10Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 6,
+  "fields": {
+    "user": 7,
+    "jti": "8232fdb0920643b6a511921987353087",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NjY3MSwiaWF0IjoxNzY0ODUxODcxLCJqdGkiOiI4MjMyZmRiMDkyMDY0M2I2YTUxMTkyMTk4NzM1MzA4NyIsInVzZXJfaWQiOjd9.b-LpFRzKSCna3oSZ_RMEaUns9gjhJZXYveGvAs7gcJo",
+    "created_at": "2025-12-04T12:37:51.349Z",
+    "expires_at": "2025-12-11T12:37:51Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 7,
+  "fields": {
+    "user": 7,
+    "jti": "c7b92a4b782c4f12a0d0052383ee65e7",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NzA0NywiaWF0IjoxNzY0ODUyMjQ3LCJqdGkiOiJjN2I5MmE0Yjc4MmM0ZjEyYTBkMDA1MjM4M2VlNjVlNyIsInVzZXJfaWQiOjd9.qcuCUDWDeQBQ4NX0Xz4AFKmaoLJ-vYXPxpQrr639Zxc",
+    "created_at": "2025-12-04T12:44:07.003Z",
+    "expires_at": "2025-12-11T12:44:07Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 8,
+  "fields": {
+    "user": 7,
+    "jti": "64233147ffcd4dbe8e40b418620e818a",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ1NzM5MSwiaWF0IjoxNzY0ODUyNTkxLCJqdGkiOiI2NDIzMzE0N2ZmY2Q0ZGJlOGU0MGI0MTg2MjBlODE4YSIsInVzZXJfaWQiOjd9.7axVI2GJqVg_IIVpIwsNm3VgdklFeQ8IbKPNcetGK4w",
+    "created_at": "2025-12-04T12:49:51.634Z",
+    "expires_at": "2025-12-11T12:49:51Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 9,
+  "fields": {
+    "user": 7,
+    "jti": "195704071124462ab3ff7c5a72a7b3f0",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2MTA1NSwiaWF0IjoxNzY0ODU2MjU1LCJqdGkiOiIxOTU3MDQwNzExMjQ0NjJhYjNmZjdjNWE3MmE3YjNmMCIsInVzZXJfaWQiOjd9.clcp4THNNEMmFzI3ffZcqJ8NGuJh4fpS414csltzIwY",
+    "created_at": "2025-12-04T13:50:55.357Z",
+    "expires_at": "2025-12-11T13:50:55Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 10,
+  "fields": {
+    "user": 7,
+    "jti": "9279cfcfc6a74d11a3087c9356915ac6",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2MTExNSwiaWF0IjoxNzY0ODU2MzE1LCJqdGkiOiI5Mjc5Y2ZjZmM2YTc0ZDExYTMwODdjOTM1NjkxNWFjNiIsInVzZXJfaWQiOjd9.vIVF2HhOcmXwvIDxqhzzabwTi8JmAjTVZO5C9N901lI",
+    "created_at": "2025-12-04T13:51:55.390Z",
+    "expires_at": "2025-12-11T13:51:55Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 11,
+  "fields": {
+    "user": 7,
+    "jti": "868e8769d4d640d2a76d4e9ec10fe91d",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2MjQyMywiaWF0IjoxNzY0ODU3NjIzLCJqdGkiOiI4NjhlODc2OWQ0ZDY0MGQyYTc2ZDRlOWVjMTBmZTkxZCIsInVzZXJfaWQiOjd9.KzN2u5pfjmOY3tBW0vODWXMEgCDyknHlP3oC1IarnMw",
+    "created_at": "2025-12-04T14:13:43.380Z",
+    "expires_at": "2025-12-11T14:13:43Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 12,
+  "fields": {
+    "user": 7,
+    "jti": "1321d37c13bd4ced82a48327f9d7cda4",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2ODIyOCwiaWF0IjoxNzY0ODYzNDI4LCJqdGkiOiIxMzIxZDM3YzEzYmQ0Y2VkODJhNDgzMjdmOWQ3Y2RhNCIsInVzZXJfaWQiOjd9.5l5msliGkZOlNQ6_16YYqv0sxA4j41rvE1TQMgeeDcY",
+    "created_at": "2025-12-04T15:50:28.176Z",
+    "expires_at": "2025-12-11T15:50:28Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 13,
+  "fields": {
+    "user": 7,
+    "jti": "effab882aae5480f9ffd122d504935b8",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2ODU5MywiaWF0IjoxNzY0ODYzNzkzLCJqdGkiOiJlZmZhYjg4MmFhZTU0ODBmOWZmZDEyMmQ1MDQ5MzViOCIsInVzZXJfaWQiOjd9.7kKv474i7xn0onw8NUDsH-amOyfHiUIn8M8rbZCgB_c",
+    "created_at": "2025-12-04T15:56:33.789Z",
+    "expires_at": "2025-12-11T15:56:33Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 14,
+  "fields": {
+    "user": 7,
+    "jti": "8069ff064cc04f19a677d7ad6f06d09e",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ2OTYzMywiaWF0IjoxNzY0ODY0ODMzLCJqdGkiOiI4MDY5ZmYwNjRjYzA0ZjE5YTY3N2Q3YWQ2ZjA2ZDA5ZSIsInVzZXJfaWQiOjd9.yk43MGG6eq10boFvyV8pyT7sgBM-36WU3yQy1ksTV3I",
+    "created_at": "2025-12-04T16:13:53.837Z",
+    "expires_at": "2025-12-11T16:13:53Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 15,
+  "fields": {
+    "user": 7,
+    "jti": "0f415da5002245b5bdf9893bf8d5265a",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ3MDAyMywiaWF0IjoxNzY0ODY1MjIzLCJqdGkiOiIwZjQxNWRhNTAwMjI0NWI1YmRmOTg5M2JmOGQ1MjY1YSIsInVzZXJfaWQiOjd9.3Zh-8UXLegkx7WYlQvocLIo9Q00tQamoDglGlOiCcQc",
+    "created_at": "2025-12-04T16:20:23.975Z",
+    "expires_at": "2025-12-11T16:20:23Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 16,
+  "fields": {
+    "user": 7,
+    "jti": "fad5c1e9be1b44d38106f11f3553d988",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ3MDI3NSwiaWF0IjoxNzY0ODY1NDc1LCJqdGkiOiJmYWQ1YzFlOWJlMWI0NGQzODEwNmYxMWYzNTUzZDk4OCIsInVzZXJfaWQiOjd9.2BnMwW4JI4muTCppUcc6LWgDz_MeYZlhM1ai_0ezTjE",
+    "created_at": "2025-12-04T16:24:35.071Z",
+    "expires_at": "2025-12-11T16:24:35Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 17,
+  "fields": {
+    "user": 7,
+    "jti": "a4f0461831fc4f438e3237348e45155b",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ3MDc3NSwiaWF0IjoxNzY0ODY1OTc1LCJqdGkiOiJhNGYwNDYxODMxZmM0ZjQzOGUzMjM3MzQ4ZTQ1MTU1YiIsInVzZXJfaWQiOjd9.y0nDuFAfh9xXVH6s-f3yC-uY1q8dwC0xnFmHBoA7fbg",
+    "created_at": "2025-12-04T16:32:55.710Z",
+    "expires_at": "2025-12-11T16:32:55Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 18,
+  "fields": {
+    "user": 7,
+    "jti": "ebdba68d4f594151a923e9c6675170a6",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwODM3OCwiaWF0IjoxNzY0OTAzNTc4LCJqdGkiOiJlYmRiYTY4ZDRmNTk0MTUxYTkyM2U5YzY2NzUxNzBhNiIsInVzZXJfaWQiOjd9.55Q9qst4RLRR_Yf3gp_tMxMBn6h5qKPACvHbtZRf5eo",
+    "created_at": "2025-12-05T02:59:38.270Z",
+    "expires_at": "2025-12-12T02:59:38Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 19,
+  "fields": {
+    "user": 7,
+    "jti": "e73bca7e33a24d65bb64280b47051155",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwODUyNSwiaWF0IjoxNzY0OTAzNzI1LCJqdGkiOiJlNzNiY2E3ZTMzYTI0ZDY1YmI2NDI4MGI0NzA1MTE1NSIsInVzZXJfaWQiOjd9.4FrctIdlaHi6Z88CflnIx69XgVFst4G34agiLL89Qc4",
+    "created_at": "2025-12-05T03:02:05.060Z",
+    "expires_at": "2025-12-12T03:02:05Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 20,
+  "fields": {
+    "user": 7,
+    "jti": "bfda13d1ac72480196f7729d0adec80c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwODY1MywiaWF0IjoxNzY0OTAzODUzLCJqdGkiOiJiZmRhMTNkMWFjNzI0ODAxOTZmNzcyOWQwYWRlYzgwYyIsInVzZXJfaWQiOjd9.lAapbpzHOkI7JMOIVpOkzmqspjmfl1x3Y-1BsYN-hPU",
+    "created_at": "2025-12-05T03:04:13.857Z",
+    "expires_at": "2025-12-12T03:04:13Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 21,
+  "fields": {
+    "user": 7,
+    "jti": "8f1c2e22a5534263934410290bdde326",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwNjQ3NCwiaWF0IjoxNzY0OTAxNjc0LCJqdGkiOiI4ZjFjMmUyMmE1NTM0MjYzOTM0NDEwMjkwYmRkZTMyNiIsInVzZXJfaWQiOjd9.ugKbObKYMR-0x_BSrcQY3Iyy_HXe8Zcwu97OcM_90Ts",
+    "created_at": "2025-12-05T02:27:54.030Z",
+    "expires_at": "2025-12-12T02:27:54Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 22,
+  "fields": {
+    "user": 7,
+    "jti": "484bd2a74f7243629a0331e3ed0e9317",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwNzM4OCwiaWF0IjoxNzY0OTAyNTg4LCJqdGkiOiI0ODRiZDJhNzRmNzI0MzYyOWEwMzMxZTNlZDBlOTMxNyIsInVzZXJfaWQiOjd9.F0R1xiozlDKSdJ84drvu6e6v-vpnqd58zzkYZjH5YKI",
+    "created_at": "2025-12-05T02:43:08.339Z",
+    "expires_at": "2025-12-12T02:43:08Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 23,
+  "fields": {
+    "user": 7,
+    "jti": "819bb5768872417c832ee44fdb71817a",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwNzUwMiwiaWF0IjoxNzY0OTAyNzAyLCJqdGkiOiI4MTliYjU3Njg4NzI0MTdjODMyZWU0NGZkYjcxODE3YSIsInVzZXJfaWQiOjd9.qG5kKj2c-w-yGB7dnqVsJ6cV5Pz1jaOf5OsnJy8icUA",
+    "created_at": "2025-12-05T02:45:02.426Z",
+    "expires_at": "2025-12-12T02:45:02Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 24,
+  "fields": {
+    "user": 7,
+    "jti": "8fb65e0381de42719dcc5e2beb1f3ecd",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwNzc4MCwiaWF0IjoxNzY0OTAyOTgwLCJqdGkiOiI4ZmI2NWUwMzgxZGU0MjcxOWRjYzVlMmJlYjFmM2VjZCIsInVzZXJfaWQiOjd9.lZ-Ws2hln9swGNw5Xq_c8Z21lTS9axV7UGFBqumCFOE",
+    "created_at": "2025-12-05T02:49:40.972Z",
+    "expires_at": "2025-12-12T02:49:40Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 25,
+  "fields": {
+    "user": 7,
+    "jti": "b22448f595b040f0a7e26314ee1f3f2a",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwNzk3NCwiaWF0IjoxNzY0OTAzMTc0LCJqdGkiOiJiMjI0NDhmNTk1YjA0MGYwYTdlMjYzMTRlZTFmM2YyYSIsInVzZXJfaWQiOjd9.q67GdsTVpFDZ5oow3XNaLBrKXD8Z3sjROe3GEXRCZ48",
+    "created_at": "2025-12-05T02:52:54.211Z",
+    "expires_at": "2025-12-12T02:52:54Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 26,
+  "fields": {
+    "user": 8,
+    "jti": "cbc2b3d763184ee595f9cb3e38455edd",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwOTI0NSwiaWF0IjoxNzY0OTA0NDQ1LCJqdGkiOiJjYmMyYjNkNzYzMTg0ZWU1OTVmOWNiM2UzODQ1NWVkZCIsInVzZXJfaWQiOjh9.AeMSphPYvYTRwP5gZA0lmmGh7z3AgqpHizlVrZoTn78",
+    "created_at": "2025-12-05T03:14:05.294Z",
+    "expires_at": "2025-12-12T03:14:05Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 27,
+  "fields": {
+    "user": 7,
+    "jti": "86e2c961f98f44b19af8a6e02a7d6b6c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwOTM3NCwiaWF0IjoxNzY0OTA0NTc0LCJqdGkiOiI4NmUyYzk2MWY5OGY0NGIxOWFmOGE2ZTAyYTdkNmI2YyIsInVzZXJfaWQiOjd9.0ajzhczSJd85lt3xSHGfhruIV9bI5b6XqDoZYVOQ7dY",
+    "created_at": "2025-12-05T03:16:14.865Z",
+    "expires_at": "2025-12-12T03:16:14Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 28,
+  "fields": {
+    "user": 7,
+    "jti": "2d0b2ca1175941e99b54e928675054a8",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUwOTcyMiwiaWF0IjoxNzY0OTA0OTIyLCJqdGkiOiIyZDBiMmNhMTE3NTk0MWU5OWI1NGU5Mjg2NzUwNTRhOCIsInVzZXJfaWQiOjd9.WJJ--bc2V4mxong6_ssoqEg_NUHZomFd_xJqKeHhj0I",
+    "created_at": "2025-12-05T03:22:02.303Z",
+    "expires_at": "2025-12-12T03:22:02Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 29,
+  "fields": {
+    "user": 7,
+    "jti": "c30dc5909cd1457abd615b695289bfb7",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUxMTQ5NSwiaWF0IjoxNzY0OTA2Njk1LCJqdGkiOiJjMzBkYzU5MDljZDE0NTdhYmQ2MTViNjk1Mjg5YmZiNyIsInVzZXJfaWQiOjd9.zNIfub5PwtDKhUIj08LGSUKRPnjTYgOmXTUHL_yr8_w",
+    "created_at": "2025-12-05T03:51:35.962Z",
+    "expires_at": "2025-12-12T03:51:35Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 30,
+  "fields": {
+    "user": 7,
+    "jti": "2756ed90c66642b2a0e5ebb935cdb37c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUyNDQ0MCwiaWF0IjoxNzY0OTE5NjQwLCJqdGkiOiIyNzU2ZWQ5MGM2NjY0MmIyYTBlNWViYjkzNWNkYjM3YyIsInVzZXJfaWQiOjd9.yKP57Y6s8IxfXJ6ryP_CBQG4iM14f_BRsna9wVhAlhk",
+    "created_at": "2025-12-05T07:27:20.192Z",
+    "expires_at": "2025-12-12T07:27:20Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 31,
+  "fields": {
+    "user": 8,
+    "jti": "bd497f70b34c47819f7fa536d4d3909f",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUyNTAzNSwiaWF0IjoxNzY0OTIwMjM1LCJqdGkiOiJiZDQ5N2Y3MGIzNGM0NzgxOWY3ZmE1MzZkNGQzOTA5ZiIsInVzZXJfaWQiOjh9.K3FXy2EyX6mHJGjNYASXrE0d1F1POtxW1r9r75Hu-jk",
+    "created_at": "2025-12-05T07:37:15.359Z",
+    "expires_at": "2025-12-12T07:37:15Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 32,
+  "fields": {
+    "user": 7,
+    "jti": "a85b5fef98814b9cb4fb1f5f70b6fffb",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTUyOTI1MCwiaWF0IjoxNzY0OTI0NDUwLCJqdGkiOiJhODViNWZlZjk4ODE0YjljYjRmYjFmNWY3MGI2ZmZmYiIsInVzZXJfaWQiOjd9.ScAKTNS79YTV6ic-Yjm2-tTP0pB3dHp4K-OyQ2-p0qc",
+    "created_at": "2025-12-05T08:47:30.209Z",
+    "expires_at": "2025-12-12T08:47:30Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 33,
+  "fields": {
+    "user": 7,
+    "jti": "8507e8a259a5446581a4f4472afbfc71",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU0NTM2OSwiaWF0IjoxNzY0OTQwNTY5LCJqdGkiOiI4NTA3ZThhMjU5YTU0NDY1ODFhNGY0NDcyYWZiZmM3MSIsInVzZXJfaWQiOjd9.JG-iGyRn0bnu7lUYR7VGhSRGSpuCDmDlv3w73_ePAWI",
+    "created_at": "2025-12-05T13:16:09.763Z",
+    "expires_at": "2025-12-12T13:16:09Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 34,
+  "fields": {
+    "user": 7,
+    "jti": "848b57addc49483ca6f85525dab0c65c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU0NjEzOCwiaWF0IjoxNzY0OTQxMzM4LCJqdGkiOiI4NDhiNTdhZGRjNDk0ODNjYTZmODU1MjVkYWIwYzY1YyIsInVzZXJfaWQiOjd9.nbhlDs3Z6kze1gtQradh3WlPAc1pZvXvWTVDsRIasDI",
+    "created_at": "2025-12-05T13:28:58.796Z",
+    "expires_at": "2025-12-12T13:28:58Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 35,
+  "fields": {
+    "user": 7,
+    "jti": "e4ad39b091ec482a96e8a6e93521632b",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU0Nzk0OSwiaWF0IjoxNzY0OTQzMTQ5LCJqdGkiOiJlNGFkMzliMDkxZWM0ODJhOTZlOGE2ZTkzNTIxNjMyYiIsInVzZXJfaWQiOjd9.r60D4m1cwHXuFnPs5P5rW9wNLRfV3JeKU68cuG2kyKY",
+    "created_at": "2025-12-05T13:59:09.775Z",
+    "expires_at": "2025-12-12T13:59:09Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 36,
+  "fields": {
+    "user": 7,
+    "jti": "21c3c37051c840349159acb0144f6eeb",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDEyNiwiaWF0IjoxNzY0OTQ1MzI2LCJqdGkiOiIyMWMzYzM3MDUxYzg0MDM0OTE1OWFjYjAxNDRmNmVlYiIsInVzZXJfaWQiOjd9.kniU2iFp8qeSVIzLw72yxJH1F3JK3aZI3cSWCnAUxsA",
+    "created_at": "2025-12-05T14:35:26.553Z",
+    "expires_at": "2025-12-12T14:35:26Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 37,
+  "fields": {
+    "user": 7,
+    "jti": "8feff6e4839147809d1a9cf8a5442489",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDIzMiwiaWF0IjoxNzY0OTQ1NDMyLCJqdGkiOiI4ZmVmZjZlNDgzOTE0NzgwOWQxYTljZjhhNTQ0MjQ4OSIsInVzZXJfaWQiOjd9.94V70S-XIkgFvVMNnGtjtika_SKVtl2xSGzi4Zot3-Q",
+    "created_at": "2025-12-05T14:37:12.394Z",
+    "expires_at": "2025-12-12T14:37:12Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 38,
+  "fields": {
+    "user": 7,
+    "jti": "59ff20c92e6245c38caaae09db6425a0",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDY0MSwiaWF0IjoxNzY0OTQ1ODQxLCJqdGkiOiI1OWZmMjBjOTJlNjI0NWMzOGNhYWFlMDlkYjY0MjVhMCIsInVzZXJfaWQiOjd9.rRuUx2tG-NkyDq4xuB98RQafYEN357-eMTS0HxQh-vw",
+    "created_at": "2025-12-05T14:44:01.295Z",
+    "expires_at": "2025-12-12T14:44:01Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 39,
+  "fields": {
+    "user": 7,
+    "jti": "47f4960d95824bf1b7e7c2396ef9af53",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDY2OSwiaWF0IjoxNzY0OTQ1ODY5LCJqdGkiOiI0N2Y0OTYwZDk1ODI0YmYxYjdlN2MyMzk2ZWY5YWY1MyIsInVzZXJfaWQiOjd9.9RmU8xsgTCtWnBy-9Pa0K5C8gKUF8EBGEuM6_WBcrdw",
+    "created_at": "2025-12-05T14:44:29.097Z",
+    "expires_at": "2025-12-12T14:44:29Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 40,
+  "fields": {
+    "user": 7,
+    "jti": "66320bfeff6f437d8fc6c463339170a2",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDg3MywiaWF0IjoxNzY0OTQ2MDczLCJqdGkiOiI2NjMyMGJmZWZmNmY0MzdkOGZjNmM0NjMzMzkxNzBhMiIsInVzZXJfaWQiOjd9.VeMkc4MULCT2VM6CcAqjQ3NlZVfd2cx0_CfwizmY2AA",
+    "created_at": "2025-12-05T14:47:53.940Z",
+    "expires_at": "2025-12-12T14:47:53Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 41,
+  "fields": {
+    "user": 7,
+    "jti": "995f29e0dfad42a1a5ab42594581c8d9",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDkwMCwiaWF0IjoxNzY0OTQ2MTAwLCJqdGkiOiI5OTVmMjllMGRmYWQ0MmExYTVhYjQyNTk0NTgxYzhkOSIsInVzZXJfaWQiOjd9.5_B7zfjttNieptDSxK-jVJFvgAzhTb6Mh7n-vBzY2Js",
+    "created_at": "2025-12-05T14:48:20.702Z",
+    "expires_at": "2025-12-12T14:48:20Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 42,
+  "fields": {
+    "user": 7,
+    "jti": "73b1ae037ce6431799f13e6ca16032d8",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MDkxMSwiaWF0IjoxNzY0OTQ2MTExLCJqdGkiOiI3M2IxYWUwMzdjZTY0MzE3OTlmMTNlNmNhMTYwMzJkOCIsInVzZXJfaWQiOjd9.YFRL9gX-nqEZUSQa7qCjnfSlorunVSz6olGvRaFkmzA",
+    "created_at": "2025-12-05T14:48:31.836Z",
+    "expires_at": "2025-12-12T14:48:31Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 43,
+  "fields": {
+    "user": 7,
+    "jti": "6a7aa09cb5d6419ab698a4b4ece06fca",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTEyMCwiaWF0IjoxNzY0OTQ2MzIwLCJqdGkiOiI2YTdhYTA5Y2I1ZDY0MTlhYjY5OGE0YjRlY2UwNmZjYSIsInVzZXJfaWQiOjd9.HfPKjc1OnFi6RtdxKT73qPuiKxyYVSZMicVVPYbNOgY",
+    "created_at": "2025-12-05T14:52:00.758Z",
+    "expires_at": "2025-12-12T14:52:00Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 44,
+  "fields": {
+    "user": 7,
+    "jti": "a6a755ffb32a4c30aeac785e3c4c83c2",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTE0MSwiaWF0IjoxNzY0OTQ2MzQxLCJqdGkiOiJhNmE3NTVmZmIzMmE0YzMwYWVhYzc4NWUzYzRjODNjMiIsInVzZXJfaWQiOjd9.x_Gdjy2sfFOr9GkMPdoFFXQwy1G3SAD5X7zxX11tipg",
+    "created_at": "2025-12-05T14:52:21.648Z",
+    "expires_at": "2025-12-12T14:52:21Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 45,
+  "fields": {
+    "user": 7,
+    "jti": "566c29d0e7544fcfaeb391583176dc35",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTI0MywiaWF0IjoxNzY0OTQ2NDQzLCJqdGkiOiI1NjZjMjlkMGU3NTQ0ZmNmYWViMzkxNTgzMTc2ZGMzNSIsInVzZXJfaWQiOjd9.hU3rvW3nTSbAcZ5AnsP78AwkaCjFo2_EJi3PPq5Ttic",
+    "created_at": "2025-12-05T14:54:03.275Z",
+    "expires_at": "2025-12-12T14:54:03Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 46,
+  "fields": {
+    "user": 7,
+    "jti": "f2529d5cb53943e491c1cee5cfe14c1c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTI2MSwiaWF0IjoxNzY0OTQ2NDYxLCJqdGkiOiJmMjUyOWQ1Y2I1Mzk0M2U0OTFjMWNlZTVjZmUxNGMxYyIsInVzZXJfaWQiOjd9.utZQn048O9w9_UGSR0nbqaWSYyGTtFyKPGSEyPiGhnk",
+    "created_at": "2025-12-05T14:54:21.599Z",
+    "expires_at": "2025-12-12T14:54:21Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 47,
+  "fields": {
+    "user": 7,
+    "jti": "5a438e9f3d214011b347796260aaf94c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTM5NSwiaWF0IjoxNzY0OTQ2NTk1LCJqdGkiOiI1YTQzOGU5ZjNkMjE0MDExYjM0Nzc5NjI2MGFhZjk0YyIsInVzZXJfaWQiOjd9.3SocCA0_CrUDIaKlyybEbFss2SaMAxJTn-GvAx2QWsM",
+    "created_at": "2025-12-05T14:56:35.816Z",
+    "expires_at": "2025-12-12T14:56:35Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 48,
+  "fields": {
+    "user": 7,
+    "jti": "34aca72ffb0e4e96b796523d65d73b10",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTU1MTQxMywiaWF0IjoxNzY0OTQ2NjEzLCJqdGkiOiIzNGFjYTcyZmZiMGU0ZTk2Yjc5NjUyM2Q2NWQ3M2IxMCIsInVzZXJfaWQiOjd9.kM2_761HKePW13qghEjbqPPJhXf_zoBwKDBZszD8_Zo",
+    "created_at": "2025-12-05T14:56:53.767Z",
+    "expires_at": "2025-12-12T14:56:53Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 49,
+  "fields": {
+    "user": 7,
+    "jti": "a62cda1c7c4f4d18803423f8b2f7c004",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgxODg0OCwiaWF0IjoxNzY1MjE0MDQ4LCJqdGkiOiJhNjJjZGExYzdjNGY0ZDE4ODAzNDIzZjhiMmY3YzAwNCIsInVzZXJfaWQiOjd9.97q7XrsDT-RMLiSgbf3gRTJ9yt-uTB6A3F2mYPngQ_k",
+    "created_at": "2025-12-08T17:14:08.532Z",
+    "expires_at": "2025-12-15T17:14:08Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 50,
+  "fields": {
+    "user": 7,
+    "jti": "65e102e11d4849a5af934e8560da0b8c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgyMDEwOSwiaWF0IjoxNzY1MjE1MzA5LCJqdGkiOiI2NWUxMDJlMTFkNDg0OWE1YWY5MzRlODU2MGRhMGI4YyIsInVzZXJfaWQiOjd9.VncSDYnTrFdObhXrOfmT4YiQYTpppp878pzlZhxmM1o",
+    "created_at": "2025-12-08T17:35:09.958Z",
+    "expires_at": "2025-12-15T17:35:09Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 51,
+  "fields": {
+    "user": 7,
+    "jti": "7758e27dce2443309c5de674836fcd76",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgyMDQwMywiaWF0IjoxNzY1MjE1NjAzLCJqdGkiOiI3NzU4ZTI3ZGNlMjQ0MzMwOWM1ZGU2NzQ4MzZmY2Q3NiIsInVzZXJfaWQiOjd9.klS2gjFtky9ngYb7RzibSVmCDx24b-Gua8FYZWZtXj0",
+    "created_at": "2025-12-08T17:40:03.845Z",
+    "expires_at": "2025-12-15T17:40:03Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 52,
+  "fields": {
+    "user": 7,
+    "jti": "7be451fa00fe4c8495ed266d349717a2",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgyMDQ1NiwiaWF0IjoxNzY1MjE1NjU2LCJqdGkiOiI3YmU0NTFmYTAwZmU0Yzg0OTVlZDI2NmQzNDk3MTdhMiIsInVzZXJfaWQiOjd9.1HlFF7HHO1wzEeNxcyePELXPBud04U6T9Zn5yH5bW6E",
+    "created_at": "2025-12-08T17:40:56.380Z",
+    "expires_at": "2025-12-15T17:40:56Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 53,
+  "fields": {
+    "user": 7,
+    "jti": "85c642c56bab4f8090b099a823c33b5d",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgyMDUzOCwiaWF0IjoxNzY1MjE1NzM4LCJqdGkiOiI4NWM2NDJjNTZiYWI0ZjgwOTBiMDk5YTgyM2MzM2I1ZCIsInVzZXJfaWQiOjd9.vN7By2WHNSUq3lp_opMKyNRPri1yl7gFfsFHh4jNKcM",
+    "created_at": "2025-12-08T17:42:18.795Z",
+    "expires_at": "2025-12-15T17:42:18Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 54,
+  "fields": {
+    "user": 7,
+    "jti": "1f259a1b34ae40cc8b19018c759c2317",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTgyMDU3OSwiaWF0IjoxNzY1MjE1Nzc5LCJqdGkiOiIxZjI1OWExYjM0YWU0MGNjOGIxOTAxOGM3NTljMjMxNyIsInVzZXJfaWQiOjd9.xlApic5zkjLo0H-0RBUy_gZQW_tBWRbel3yfm03Tkuk",
+    "created_at": "2025-12-08T17:42:59.742Z",
+    "expires_at": "2025-12-15T17:42:59Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 55,
+  "fields": {
+    "user": 7,
+    "jti": "2ef1d3cfda1f442c8e348e61dbbd4db9",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTg4NDE0NywiaWF0IjoxNzY1Mjc5MzQ3LCJqdGkiOiIyZWYxZDNjZmRhMWY0NDJjOGUzNDhlNjFkYmJkNGRiOSIsInVzZXJfaWQiOjd9.y_CJqknkfvDcLibLvWr3P3qun00wXleFhtXJJXrUvIU",
+    "created_at": "2025-12-09T11:22:27.950Z",
+    "expires_at": "2025-12-16T11:22:27Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 56,
+  "fields": {
+    "user": 7,
+    "jti": "ab02a927f26b4089a76d004989c82dd2",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTg4ODY1MCwiaWF0IjoxNzY1MjgzODUwLCJqdGkiOiJhYjAyYTkyN2YyNmI0MDg5YTc2ZDAwNDk4OWM4MmRkMiIsInVzZXJfaWQiOjd9.EneJSywufhwM4lGBklENYAXErEiJmSP1NMjKPQkAX9A",
+    "created_at": "2025-12-09T12:37:30.824Z",
+    "expires_at": "2025-12-16T12:37:30Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 57,
+  "fields": {
+    "user": 7,
+    "jti": "9d8ae0500dc54a92b618617dd3c0302f",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTg4ODY2OCwiaWF0IjoxNzY1MjgzODY4LCJqdGkiOiI5ZDhhZTA1MDBkYzU0YTkyYjYxODYxN2RkM2MwMzAyZiIsInVzZXJfaWQiOjd9.4yWc8kUBy4No2ZUbv46alJMK64qQw2s7x21s53pSmOg",
+    "created_at": "2025-12-09T12:37:48.937Z",
+    "expires_at": "2025-12-16T12:37:48Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 58,
+  "fields": {
+    "user": 7,
+    "jti": "58666d986f324225ad164c4ec6298305",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTg4OTY0MywiaWF0IjoxNzY1Mjg0ODQzLCJqdGkiOiI1ODY2NmQ5ODZmMzI0MjI1YWQxNjRjNGVjNjI5ODMwNSIsInVzZXJfaWQiOjd9.kTgkxVftVUeZzRio-qIGSU4GvI1zC72dsTV1iNPzNHo",
+    "created_at": "2025-12-09T12:54:03.397Z",
+    "expires_at": "2025-12-16T12:54:03Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 59,
+  "fields": {
+    "user": 7,
+    "jti": "52f4069e7eba49aabe9639d30c4bb965",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTg5MDE5NCwiaWF0IjoxNzY1Mjg1Mzk0LCJqdGkiOiI1MmY0MDY5ZTdlYmE0OWFhYmU5NjM5ZDMwYzRiYjk2NSIsInVzZXJfaWQiOjd9.WOHaZILZJ1dWnHQa6tQVVWZhjye0JHGURJIRVzT6LQE",
+    "created_at": "2025-12-09T13:03:14.511Z",
+    "expires_at": "2025-12-16T13:03:14Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 60,
+  "fields": {
+    "user": 7,
+    "jti": "f04e8657411f4c4da063b8307b639626",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NzE3NzA4MSwiaWF0IjoxNzY2NTcyMjgxLCJqdGkiOiJmMDRlODY1NzQxMWY0YzRkYTA2M2I4MzA3YjYzOTYyNiIsInVzZXJfaWQiOjd9.I94YlS9S9FAgk1XRg5JRYpGDkhivtNW251XyL_6t7D4",
+    "created_at": "2025-12-24T10:31:21.077Z",
+    "expires_at": "2025-12-31T10:31:21Z"
+  }
+},
+{
+  "model": "token_blacklist.outstandingtoken",
+  "pk": 61,
+  "fields": {
+    "user": 7,
+    "jti": "4f6b25e183b7426880349c3a7fc0c778",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NzE3ODI3NywiaWF0IjoxNzY2NTczNDc3LCJqdGkiOiI0ZjZiMjVlMTgzYjc0MjY4ODAzNDljM2E3ZmMwYzc3OCIsInVzZXJfaWQiOjd9.Oyow2hE_oYqC_ozdod_8wOIjcbWKlaW5ZJh_4f7-NRA",
+    "created_at": "2025-12-24T10:51:17.090Z",
+    "expires_at": "2025-12-31T10:51:17Z"
+  }
+},
+{
+  "model": "api.transaction",
+  "pk": "INV-1765286338346",
+  "fields": {
+    "type": "بيع",
+    "date": "2025-12-09T13:18:58.533Z",
+    "amount": "75.00",
+    "payment_method": "كاش",
+    "description": "",
+    "category": null,
+    "related_customer": 28,
+    "related_supplier": null,
+    "items": [
+      {
+        "id": 84,
+        "name": "منتج 2",
+        "price": 20.0,
+        "discount": 0.0,
+        "quantity": 3,
+        "costPrice": 10.0,
+        "sellPrice": 20.0
+      },
+      {
+        "id": 83,
+        "name": "منتج",
+        "price": 15.0,
+        "discount": 0.0,
+        "quantity": 1,
+        "costPrice": 10.0,
+        "sellPrice": 15.0
+      }
+    ],
+    "status": "completed",
+    "due_date": null,
+    "is_direct_sale": false,
+    "shift": null,
+    "created_by": 7
+  }
+},
+{
+  "model": "api.transaction",
+  "pk": "PUR-B80F94EF6A87",
+  "fields": {
+    "type": "شراء",
+    "date": "2025-12-09T13:09:50.138Z",
+    "amount": "20.00",
+    "payment_method": "آجل",
+    "description": "",
+    "category": null,
+    "related_customer": null,
+    "related_supplier": 19,
+    "items": [
+      {
+        "id": 84,
+        "name": "منتج 2",
+        "quantity": 1,
+        "cost_price": 10.0
+      },
+      {
+        "id": 83,
+        "name": "منتج",
+        "quantity": 1,
+        "cost_price": 10.0
+      }
+    ],
+    "status": "completed",
+    "due_date": null,
+    "is_direct_sale": false,
+    "shift": null,
+    "created_by": 7
+  }
+},
+{
+  "model": "api.appsettings",
+  "pk": 1,
+  "fields": {
+    "company_name": "FOX GROUP",
+    "company_phone": "01112223334",
+    "company_address": "القاهرة - مصر",
+    "logo_url": "/fox-logo.png",
+    "auto_print": false,
+    "next_invoice_number": 1002,
+    "opening_balance": "50000.00",
+    "tax_rate": "14.00",
+    "current_shift": null,
+    "prevent_negative_stock": false,
+    "invoice_terms": "البضاعة المباعة ترد وتستبدل خلال 14 يوماً بحالتها الأصلية. تطبق الشروط والأحكام."
+  }
+},
+{
+  "model": "customers.customer",
+  "pk": 28,
+  "fields": {
+    "customer_code": "CASH-001",
+    "customer_name": "عميل نقدي",
+    "customer_type": "consumer",
+    "phone": "",
+    "phone2": null,
+    "email": null,
+    "address": "",
+    "city": null,
+    "credit_limit": "0.00",
+    "current_balance": "0.00",
+    "is_active": true,
+    "created_at": "2025-12-09T13:18:17.492",
+    "updated_at": "2025-12-09T13:18:17.492",
+    "notes": null
+  }
+},
+{
+  "model": "suppliers.supplier",
+  "pk": 19,
+  "fields": {
+    "supplier_code": "S0001",
+    "supplier_name": "مورد2",
+    "contact_person": null,
+    "phone": "010101010101",
+    "phone2": null,
+    "email": null,
+    "address": null,
+    "city": null,
+    "credit_limit": "0.00",
+    "current_balance": "20.00",
+    "is_active": true,
+    "created_at": "2025-12-09T11:09:43.588",
+    "updated_at": "2025-12-09T13:09:50.172",
+    "notes": null
+  }
+},
+{
+  "model": "products.product",
+  "pk": 83,
+  "fields": {
+    "product_code": "PRD-MIYK6NKH-BVUC",
+    "barcode": null,
+    "product_name": "منتج",
+    "product_name_ar": null,
+    "category": "فئة",
+    "unit": "وحدة",
+    "purchase_price": "10.00",
+    "selling_price": "15.00",
+    "min_stock_level": "5.00",
+    "max_stock_level": "0.00",
+    "current_stock": "100.00",
+    "product_image": null,
+    "is_active": true,
+    "allow_decimal": false,
+    "created_at": "2025-12-09T08:31:33.236",
+    "updated_at": "2025-12-09T13:18:58.568",
+    "description": null
+  }
+},
+{
+  "model": "products.product",
+  "pk": 84,
+  "fields": {
+    "product_code": "PRD-MIYLH4EU-N91U",
+    "barcode": null,
+    "product_name": "منتج 2",
+    "product_name_ar": null,
+    "category": "قئة 2",
+    "unit": "وحدة 2",
+    "purchase_price": "10.00",
+    "selling_price": "20.00",
+    "min_stock_level": "5.00",
+    "max_stock_level": "0.00",
+    "current_stock": "18.00",
+    "product_image": null,
+    "is_active": true,
+    "allow_decimal": false,
+    "created_at": "2025-12-09T09:09:12.535",
+    "updated_at": "2025-12-09T13:18:58.548",
+    "description": null
+  }
+},
+{
+  "model": "reports.inventorysummary",
+  "pk": 83,
+  "fields": {
+    "product_code": "PRD-MIYK6NKH-BVUC",
+    "barcode": null,
+    "product_name": "منتج",
+    "category": "فئة",
+    "unit": "وحدة",
+    "current_stock": "100.00",
+    "purchase_price": "10.00",
+    "selling_price": "15.00",
+    "stock_value_cost": "1000.0000",
+    "stock_value_selling": "1500.0000",
+    "min_stock_level": "5.00",
+    "max_stock_level": "0.00",
+    "stock_status": "مخزون زائد",
+    "is_active": true
+  }
+},
+{
+  "model": "reports.inventorysummary",
+  "pk": 84,
+  "fields": {
+    "product_code": "PRD-MIYLH4EU-N91U",
+    "barcode": null,
+    "product_name": "منتج 2",
+    "category": "قئة 2",
+    "unit": "وحدة 2",
+    "current_stock": "18.00",
+    "purchase_price": "10.00",
+    "selling_price": "20.00",
+    "stock_value_cost": "180.0000",
+    "stock_value_selling": "360.0000",
+    "min_stock_level": "5.00",
+    "max_stock_level": "0.00",
+    "stock_status": "مخزون زائد",
+    "is_active": true
+  }
+},
+{
+  "model": "users.posuser",
+  "pk": 1,
+  "fields": {
+    "username": "admin",
+    "password_hash": "pbkdf2_sha256$260000$placeholder",
+    "full_name": "المدير العام",
+    "email": null,
+    "phone": null,
+    "role": "admin",
+    "is_active": true,
+    "last_login": null,
+    "created_at": "2025-12-02T21:50:06.861",
+    "updated_at": "2025-12-02T21:50:06.861"
+  }
+}
+]

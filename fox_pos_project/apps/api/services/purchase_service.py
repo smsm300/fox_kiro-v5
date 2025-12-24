@@ -39,8 +39,10 @@ class PurchaseService:
         # 2. Generate transaction ID
         transaction_id = f"PUR-{uuid.uuid4().hex[:12].upper()}"
         
-        # 3. Get current shift (optional for purchases)
-        open_shift = Shift.objects.filter(status='open').first()
+        # 3. Get user's current shift (if user provided)
+        open_shift = None
+        if user:
+            open_shift = Shift.objects.filter(user=user, status='open').first()
         
         # 4. Enrich cart items with product names before saving
         enriched_items = []
@@ -99,7 +101,7 @@ class PurchaseService:
             product.current_stock += new_quantity
             product.save()
         
-        # 6. Update supplier balance (if deferred)
+        # 7. Update supplier balance (if deferred)
         if payment_method == 'آجل':
             supplier.current_balance += Decimal(str(total_amount))
             supplier.save()
@@ -145,8 +147,10 @@ class PurchaseService:
                     error_code='INSUFFICIENT_STOCK'
                 )
         
-        # Get current shift
-        open_shift = Shift.objects.filter(status='open').first()
+        # Get user's current shift (if user provided)
+        open_shift = None
+        if user:
+            open_shift = Shift.objects.filter(user=user, status='open').first()
         
         # Create return transaction
         return_transaction = Transaction.objects.create(

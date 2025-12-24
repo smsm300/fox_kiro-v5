@@ -4,6 +4,7 @@ import { Transaction, TransactionType, AppSettings } from '../types';
 import { Modal } from '../components/Modal';
 import { transactionsAPI, settingsAPI } from '../services/endpoints';
 import { handleAPIError } from '../services/errorHandler';
+import { useDebounce } from '../hooks/useDebounce';
 
 // Sort types
 type SortField = 'id' | 'type' | 'party' | 'date' | 'amount' | 'paymentMethod' | 'itemsCount';
@@ -25,7 +26,11 @@ const getDefaultDateRange = () => {
   };
 };
 
-const Invoices: React.FC = () => {
+interface InvoicesProps {
+  onDataChange?: () => void;
+}
+
+const Invoices: React.FC<InvoicesProps> = ({ onDataChange }) => {
   const defaultDates = getDefaultDateRange();
   const [invoices, setInvoices] = useState<Transaction[]>([]);
   const [settings, setSettings] = useState<AppSettings | null>(null);
@@ -34,14 +39,14 @@ const Invoices: React.FC = () => {
   const [dateFrom, setDateFrom] = useState(defaultDates.from);
   const [dateTo, setDateTo] = useState(defaultDates.to);
   const [typeFilter, setTypeFilter] = useState<'all' | 'sale' | 'purchase'>('all');
-  
+
   // View Invoice Modal
   const [viewingInvoice, setViewingInvoice] = useState<Transaction | null>(null);
-  
+
   // Return Modal
   const [returningInvoice, setReturningInvoice] = useState<Transaction | null>(null);
   const [returnReason, setReturnReason] = useState('');
-  
+
   // Sorting
   const [sortField, setSortField] = useState<SortField>('date');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
@@ -67,7 +72,7 @@ const Invoices: React.FC = () => {
       const data = (response.data as any).results || response.data;
       // Filter only sale and purchase transactions (invoices)
       const invoiceTypes = [TransactionType.SALE, TransactionType.PURCHASE];
-      const filteredInvoices = Array.isArray(data) 
+      const filteredInvoices = Array.isArray(data)
         ? data.filter((t: Transaction) => invoiceTypes.includes(t.type as TransactionType))
         : [];
       setInvoices(filteredInvoices);
@@ -92,13 +97,13 @@ const Invoices: React.FC = () => {
   // Sort icon component
   const SortIcon = ({ field }: { field: SortField }) => (
     <span className="inline-flex flex-col ml-1">
-      <ChevronUp 
-        size={12} 
-        className={`-mb-1 ${sortField === field && sortDirection === 'asc' ? 'text-fox-400' : 'text-gray-600'}`} 
+      <ChevronUp
+        size={12}
+        className={`-mb-1 ${sortField === field && sortDirection === 'asc' ? 'text-fox-400' : 'text-gray-600'}`}
       />
-      <ChevronDown 
-        size={12} 
-        className={`${sortField === field && sortDirection === 'desc' ? 'text-fox-400' : 'text-gray-600'}`} 
+      <ChevronDown
+        size={12}
+        className={`${sortField === field && sortDirection === 'desc' ? 'text-fox-400' : 'text-gray-600'}`}
       />
     </span>
   );
@@ -107,17 +112,17 @@ const Invoices: React.FC = () => {
     // First filter
     const filtered = invoices.filter(inv => {
       const searchLower = searchTerm.toLowerCase();
-      const matchesSearch = 
+      const matchesSearch =
         inv.id.toLowerCase().includes(searchLower) ||
         (inv.customerName || '').toLowerCase().includes(searchLower) ||
         (inv.supplierName || '').toLowerCase().includes(searchLower) ||
         (inv.description || '').toLowerCase().includes(searchLower);
-      
-      const matchesType = 
+
+      const matchesType =
         typeFilter === 'all' ||
         (typeFilter === 'sale' && inv.type === TransactionType.SALE) ||
         (typeFilter === 'purchase' && inv.type === TransactionType.PURCHASE);
-      
+
       let matchesDate = true;
       if (dateFrom) {
         matchesDate = matchesDate && new Date(inv.date) >= new Date(dateFrom);
@@ -125,7 +130,7 @@ const Invoices: React.FC = () => {
       if (dateTo) {
         matchesDate = matchesDate && new Date(inv.date) <= new Date(dateTo + 'T23:59:59');
       }
-      
+
       return matchesSearch && matchesType && matchesDate;
     });
 
@@ -176,7 +181,7 @@ const Invoices: React.FC = () => {
       return sum + (qty * price);
     }, 0);
     const discount = subtotal - Number(invoice.amount);
-    
+
     // إيصال حراري بعرض 80mm
     const printContent = `
       <!DOCTYPE html>
@@ -248,9 +253,9 @@ const Invoices: React.FC = () => {
         </div>
         
         ${items.map((item: any) => {
-          const qty = item.cartQuantity || item.quantity || 0;
-          const price = Number(item.sellPrice || item.buyPrice || item.price || 0);
-          return `
+      const qty = item.cartQuantity || item.quantity || 0;
+      const price = Number(item.sellPrice || item.buyPrice || item.price || 0);
+      return `
           <div class="item-row">
             <span class="item-name">${item.name || item.productName || '-'}</span>
             <span class="item-qty">${qty}</span>
@@ -276,7 +281,7 @@ const Invoices: React.FC = () => {
       </body>
       </html>
     `;
-    
+
     const printWindow = window.open('', '_blank', 'width=320,height=600');
     if (printWindow) {
       printWindow.document.write(printContent);
@@ -286,7 +291,7 @@ const Invoices: React.FC = () => {
 
   const handleReturn = async () => {
     if (!returningInvoice) return;
-    
+
     setLoading(true);
     try {
       await transactionsAPI.return(returningInvoice.id.toString());
@@ -294,6 +299,7 @@ const Invoices: React.FC = () => {
       setReturningInvoice(null);
       setReturnReason('');
       await fetchInvoices();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -325,7 +331,7 @@ const Invoices: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
+
           {/* Type Filter */}
           <div className="flex items-center gap-2">
             <Filter size={18} className="text-gray-500" />
@@ -340,7 +346,7 @@ const Invoices: React.FC = () => {
             </select>
           </div>
         </div>
-        
+
         {/* Date Filters */}
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="flex items-center gap-2">
@@ -419,16 +425,15 @@ const Invoices: React.FC = () => {
                 {filteredAndSortedInvoices.map(invoice => {
                   const isSale = invoice.type === TransactionType.SALE;
                   const partyName = isSale ? invoice.customerName : invoice.supplierName;
-                  
+
                   return (
                     <tr key={invoice.id} className="hover:bg-dark-900/50 text-gray-300">
                       <td className="p-3 font-mono text-fox-400">{invoice.id}</td>
                       <td className="p-3">
-                        <span className={`px-2 py-1 rounded text-xs ${
-                          isSale 
-                            ? 'bg-emerald-900/30 text-emerald-400' 
+                        <span className={`px-2 py-1 rounded text-xs ${isSale
+                            ? 'bg-emerald-900/30 text-emerald-400'
                             : 'bg-blue-900/30 text-blue-400'
-                        }`}>
+                          }`}>
                           {isSale ? 'بيع' : 'شراء'}
                         </span>
                       </td>
@@ -498,7 +503,7 @@ const Invoices: React.FC = () => {
                 <p className="text-white">{viewingInvoice.customerName || viewingInvoice.supplierName || 'عميل نقدي'}</p>
               </div>
             </div>
-            
+
             <div className="bg-dark-900 rounded-lg overflow-hidden">
               <table className="w-full text-sm">
                 <thead className="bg-dark-800">
@@ -523,12 +528,12 @@ const Invoices: React.FC = () => {
                 </tbody>
               </table>
             </div>
-            
+
             <div className="flex justify-between items-center pt-3 border-t border-dark-700">
               <span className="text-gray-400">الإجمالي الكلي</span>
               <span className="text-fox-400 font-bold text-xl">{viewingInvoice.amount.toLocaleString()} ج.م</span>
             </div>
-            
+
             <div className="flex gap-3 pt-4">
               <button
                 onClick={() => handlePrintInvoice(viewingInvoice)}
@@ -558,7 +563,7 @@ const Invoices: React.FC = () => {
               <p className="text-gray-400 text-sm mt-2">المبلغ</p>
               <p className="text-white font-bold">{returningInvoice.amount.toLocaleString()} ج.م</p>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">سبب المرتجع</label>
               <textarea
@@ -569,13 +574,13 @@ const Invoices: React.FC = () => {
                 placeholder="اكتب سبب المرتجع (اختياري)..."
               />
             </div>
-            
+
             <div className="bg-yellow-900/20 border border-yellow-500/30 p-3 rounded-lg">
               <p className="text-yellow-400 text-sm">
                 ⚠️ سيتم إرجاع الكميات للمخزون وتسجيل معاملة مرتجع في الخزينة
               </p>
             </div>
-            
+
             <div className="flex gap-3 pt-4">
               <button
                 onClick={() => setReturningInvoice(null)}

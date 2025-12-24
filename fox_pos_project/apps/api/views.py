@@ -279,8 +279,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
         description = request.data.get('description', 'مصروف')
         payment_method = request.data.get('payment_method', 'كاش')
         
-        # Get current shift
-        open_shift = Shift.objects.filter(status='open').first()
+        # Get user's current shift
+        open_shift = get_user_shift(request.user)
         
         # Check if needs approval
         status_value = 'completed'
@@ -315,8 +315,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
         amount = request.data.get('amount')
         description = request.data.get('description', 'إيداع رأس مال')
         
-        # Get current shift
-        open_shift = Shift.objects.filter(status='open').first()
+        # Get user's current shift
+        open_shift = get_user_shift(request.user)
         
         transaction = Transaction.objects.create(
             transaction_id=f"CAP-{uuid.uuid4().hex[:12].upper()}",
@@ -345,8 +345,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
         amount = request.data.get('amount')
         description = request.data.get('description', 'مسحوبات شخصية')
         
-        # Get current shift
-        open_shift = Shift.objects.filter(status='open').first()
+        # Get user's current shift
+        open_shift = get_user_shift(request.user)
         
         transaction = Transaction.objects.create(
             transaction_id=f"WDR-{uuid.uuid4().hex[:12].upper()}",
@@ -645,6 +645,45 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_fields = ['category', 'is_active']
     ordering_fields = ['product_name', 'current_stock', 'created_at']
     ordering = ['-created_at']
+    
+    def create(self, request, *args, **kwargs):
+        """Create product with error handling"""
+        import traceback
+        try:
+            serializer = self.get_serializer(data=request.data)
+            if not serializer.is_valid():
+                return Response(
+                    {'error_code': 'VALIDATION_ERROR', 'message': 'Validation error', 'details': serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            product = serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            print(traceback.format_exc())
+            return Response(
+                {'error_code': 'SERVER_ERROR', 'message': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+    
+    def update(self, request, *args, **kwargs):
+        """Update product with error handling"""
+        import traceback
+        try:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data, partial=kwargs.get('partial', False))
+            if not serializer.is_valid():
+                return Response(
+                    {'error_code': 'VALIDATION_ERROR', 'message': 'Validation error', 'details': serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            product = serializer.save()
+            return Response(serializer.data)
+        except Exception as e:
+            print(traceback.format_exc())
+            return Response(
+                {'error_code': 'SERVER_ERROR', 'message': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
     
     def destroy(self, request, *args, **kwargs):
         """Delete product with validation"""

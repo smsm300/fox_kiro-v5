@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { History, ShoppingBag, Plus, Eye } from 'lucide-react';
 import { Product, Supplier, CartItem, PaymentMethod, Transaction, TransactionType } from '../types';
 import { ProductSelector } from '../components/purchases/ProductSelector';
@@ -7,20 +7,24 @@ import { Modal } from '../components/Modal';
 import { productsAPI, suppliersAPI, transactionsAPI } from '../services/endpoints';
 import { handleAPIError } from '../services/errorHandler';
 
-const Purchases: React.FC = () => {
+interface PurchasesProps {
+  onDataChange?: () => void;
+}
+
+const Purchases: React.FC<PurchasesProps> = ({ onDataChange }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<'create' | 'history'>('create');
   const [purchaseHistory, setPurchaseHistory] = useState<Transaction[]>([]);
-  
+
   // Create View State
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSupplier, setSelectedSupplier] = useState<number>(0);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.DEFERRED);
   const [dueDate, setDueDate] = useState('');
-  
+
   // Details Modal State
   const [detailsModal, setDetailsModal] = useState<{
     isOpen: boolean;
@@ -54,11 +58,11 @@ const Purchases: React.FC = () => {
       const productsData = getListData(productsResponse);
       const suppliersData = getListData(suppliersResponse);
       const transactionsData = getListData(transactionsResponse);
-      
+
       setProducts(Array.isArray(productsData) ? productsData : []);
       setSuppliers(Array.isArray(suppliersData) ? suppliersData : []);
       setPurchaseHistory(Array.isArray(transactionsData) ? transactionsData : []);
-      
+
       // Set default supplier
       if (Array.isArray(suppliersData) && suppliersData.length > 0) {
         setSelectedSupplier(suppliersData[0].id);
@@ -73,10 +77,10 @@ const Purchases: React.FC = () => {
     }
   };
 
-  // Filter products for selection
-  const filteredProducts = (products || []).filter(p => 
+  // Filter products for selection - memoized for performance
+  const filteredProducts = useMemo(() => (products || []).filter(p =>
     p.name.includes(searchTerm) || p.sku.includes(searchTerm)
-  );
+  ), [products, searchTerm]);
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -101,9 +105,9 @@ const Purchases: React.FC = () => {
 
   const handleCompletePurchase = async () => {
     if (cart.length === 0) return;
-    
+
     const total = cart.reduce((sum, item) => sum + (item.costPrice * item.cartQuantity), 0);
-    
+
     setLoading(true);
     try {
       await transactionsAPI.createPurchase({
@@ -123,9 +127,10 @@ const Purchases: React.FC = () => {
       setCart([]);
       setSearchTerm('');
       setDueDate('');
-      
+
       // Refresh data
       await fetchData();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -172,22 +177,20 @@ const Purchases: React.FC = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setView('create')}
-            className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 text-sm ${
-              view === 'create'
+            className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 text-sm ${view === 'create'
                 ? 'bg-fox-500 text-white'
                 : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
-            }`}
+              }`}
           >
             <Plus size={16} />
             فاتورة جديدة
           </button>
           <button
             onClick={() => setView('history')}
-            className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 text-sm ${
-              view === 'history'
+            className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 text-sm ${view === 'history'
                 ? 'bg-fox-500 text-white'
                 : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
-            }`}
+              }`}
           >
             <History size={16} />
             السجل
@@ -305,8 +308,8 @@ const Purchases: React.FC = () => {
               <div className="bg-dark-900 p-3 rounded-lg">
                 <span className="text-gray-400 block text-xs">المورد</span>
                 <span className="text-white">
-                  {detailsModal.transaction.supplierName || 
-                   suppliers.find(s => s.id === detailsModal.transaction?.relatedId)?.name || '-'}
+                  {detailsModal.transaction.supplierName ||
+                    suppliers.find(s => s.id === detailsModal.transaction?.relatedId)?.name || '-'}
                 </span>
               </div>
               <div className="bg-dark-900 p-3 rounded-lg">

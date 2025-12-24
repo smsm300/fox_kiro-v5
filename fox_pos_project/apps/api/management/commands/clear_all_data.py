@@ -34,4 +34,4 @@ class Command(BaseCommand):
         Supplier.objects.all().delete()
         self.stdout.write(self.style.SUCCESS('✓ تم مسح الموردين'))
         
-        self.stdout.write(self.style.SUCCESS('\n✅ تم مسح جميع البيانات بنجاح!'))
+        self.stdout.write(self.style.SUCCESS('\n[OK] تم مسح جميع البيانات بنجاح!'))

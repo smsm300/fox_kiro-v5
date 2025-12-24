@@ -45,7 +45,7 @@ export const StockAdjustment: React.FC<StockAdjustmentProps> = ({
           <div className="bg-dark-900 p-4 rounded-lg border border-dark-800">
             <h3 className="font-bold text-white mb-2">{product.name}</h3>
             <p className="text-sm text-gray-400">
-              الكمية الحالية: <span className="font-bold text-fox-400">{product.quantity} {product.unit}</span>
+              الكمية الحالية: <span className="font-bold text-fox-400">{Number(product.quantity)} {product.unit}</span>
             </p>
           </div>
 
@@ -109,8 +109,8 @@ export const StockAdjustment: React.FC<StockAdjustmentProps> = ({
               <p className="text-sm text-gray-400 mb-1">الكمية بعد التعديل:</p>
               <p className="text-2xl font-bold text-fox-400">
                 {adjustmentType === 'add' 
-                  ? product.quantity + Number(quantity)
-                  : product.quantity - Number(quantity)
+                  ? Number(product.quantity) + Number(quantity)
+                  : Number(product.quantity) - Number(quantity)
                 } {product.unit}
               </p>
             </div>

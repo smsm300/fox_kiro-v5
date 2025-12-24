@@ -197,8 +197,10 @@ class SaleService:
                 error_code='INVALID_TYPE'
             )
         
-        # Get current shift
-        open_shift = Shift.objects.filter(status='open').first()
+        # Get user's current shift (if user provided)
+        open_shift = None
+        if user:
+            open_shift = Shift.objects.filter(user=user, status='open').first()
         
         # Create return transaction
         return_transaction = Transaction.objects.create(

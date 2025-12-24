@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Plus, Search, X, Printer, FileText } from 'lucide-react';
 import { Customer, PaymentMethod, Transaction, TransactionType, AppSettings } from '../types';
 import { CustomerForm } from '../components/customers/CustomerForm';
@@ -7,8 +7,13 @@ import { DebtSettlement } from '../components/customers/DebtSettlement';
 import { Modal } from '../components/Modal';
 import { customersAPI, transactionsAPI, settingsAPI } from '../services/endpoints';
 import { handleAPIError } from '../services/errorHandler';
+import { useDebounce } from '../hooks/useDebounce';
 
-const Customers: React.FC = () => {
+interface CustomersProps {
+  onDataChange?: () => void;
+}
+
+const Customers: React.FC<CustomersProps> = ({ onDataChange }) => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [settings, setSettings] = useState<AppSettings | null>(null);
@@ -18,7 +23,7 @@ const Customers: React.FC = () => {
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [isDebtSettlementOpen, setIsDebtSettlementOpen] = useState(false);
   const [settlingCustomer, setSettlingCustomer] = useState<Customer | null>(null);
-  
+
   // Invoices and Statement modals
   const [invoicesCustomer, setInvoicesCustomer] = useState<Customer | null>(null);
   const [statementCustomer, setStatementCustomer] = useState<Customer | null>(null);
@@ -82,10 +87,13 @@ const Customers: React.FC = () => {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   };
 
-  const filteredCustomers = (customers || []).filter(c =>
-    c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.phone.includes(searchTerm)
-  );
+  // Debounced search term for performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  const filteredCustomers = useMemo(() => (customers || []).filter(c =>
+    c.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    c.phone.includes(debouncedSearchTerm)
+  ), [customers, debouncedSearchTerm]);
 
   const handleOpenForm = () => {
     setEditingCustomer(null);
@@ -121,6 +129,7 @@ const Customers: React.FC = () => {
       }
       setIsFormOpen(false);
       await fetchCustomers();
+      onDataChange?.();
     } catch (err: any) {
       alert(handleAPIError(err));
     } finally {
@@ -156,6 +165,7 @@ const Customers: React.FC = () => {
         await customersAPI.delete(id);
         alert('تم حذف العميل بنجاح');
         await fetchCustomers();
+        onDataChange?.();
       } catch (err: any) {
         alert(handleAPIError(err));
       } finally {
@@ -236,7 +246,7 @@ const Customers: React.FC = () => {
                 {getCustomerTransactions(invoicesCustomer).reduce((sum, t) => sum + Number(t.amount || 0), 0).toLocaleString()} ج.م
               </span>
             </div>
-            
+
             <div className="max-h-96 overflow-y-auto">
               {getCustomerTransactions(invoicesCustomer).length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
@@ -308,7 +318,7 @@ const Customers: React.FC = () => {
                     {statementCustomer.balance < 0 ? `مدين: ${Math.abs(statementCustomer.balance).toLocaleString()}` : statementCustomer.balance.toLocaleString()} ج.م
                   </span>
                 </div>
-                
+
                 <table className="w-full text-right text-sm border-collapse">
                   <thead className="bg-dark-900 text-gray-400 print:bg-gray-200 print:text-black">
                     <tr><th className="p-2 border border-dark-800 print:border-gray-300">التاريخ</th><th className="p-2 border border-dark-800 print:border-gray-300">البيان</th><th className="p-2 border border-dark-800 print:border-gray-300">المبلغ</th></tr>

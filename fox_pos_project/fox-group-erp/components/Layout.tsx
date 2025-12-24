@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  ShoppingCart, 
-  Package, 
-  Users, 
-  Truck, 
-  Wallet, 
-  FileText, 
+import {
+  LayoutDashboard,
+  ShoppingCart,
+  Package,
+  Users,
+  Truck,
+  Wallet,
+  FileText,
   Menu,
   LogOut,
   Bell,
@@ -35,12 +35,12 @@ interface LayoutProps {
   settings?: AppSettings;
 }
 
-const Layout: React.FC<LayoutProps> = ({ 
-  currentSection, 
-  onNavigate, 
-  children, 
-  alertsCount = 0, 
-  lowStockItems = [], 
+const Layout: React.FC<LayoutProps> = ({
+  currentSection,
+  onNavigate,
+  children,
+  alertsCount = 0,
+  lowStockItems = [],
   currentUser,
   onLogout,
   onChangePassword,
@@ -48,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  
+
   // Password Modal
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [newPassword, setNewPassword] = useState('');
@@ -69,13 +69,13 @@ const Layout: React.FC<LayoutProps> = ({
   ];
 
   // Filter Menu based on Role
-  const menuItems = allMenuItems.filter(item => 
+  const menuItems = allMenuItems.filter(item =>
     currentUser ? item.roles.includes(currentUser.role) : false
   );
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(newPassword && onChangePassword) {
+    if (newPassword && onChangePassword) {
       onChangePassword(newPassword);
       setNewPassword('');
       setIsPasswordModalOpen(false);
@@ -86,44 +86,43 @@ const Layout: React.FC<LayoutProps> = ({
   return (
     <div className="flex h-screen bg-dark-900 text-gray-100 overflow-hidden font-sans">
       {/* Sidebar */}
-      <aside 
-        className={`${
-          isSidebarOpen ? 'w-64' : 'w-20'
-        } bg-dark-950 border-l border-dark-800 transition-all duration-300 flex flex-col z-20 shadow-2xl relative`}
+      <aside
+        className={`${isSidebarOpen ? 'w-64' : 'w-20'
+          } bg-dark-950 border-l border-dark-800 transition-all duration-300 flex flex-col z-20 shadow-2xl relative`}
       >
         <div className="h-24 flex items-center justify-center border-b border-dark-800 relative bg-black/40">
           {isSidebarOpen ? (
-             <div className="flex flex-col items-center justify-center w-full px-4 h-full py-2">
-                {settings?.logoUrl ? (
-                  <div className="h-full w-full flex items-center justify-center">
-                    <img 
-                      src={settings.logoUrl} 
-                      alt="Fox Group" 
-                      className="h-16 w-auto max-w-full object-contain drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]" 
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                        e.currentTarget.nextElementSibling?.classList.add('flex');
-                      }}
-                    />
-                    {/* Fallback Text if Image Fails */}
-                    <div className="hidden flex-col items-center">
-                        <h1 className="font-bold text-2xl text-fox-500 neon-text tracking-widest uppercase">FOX GROUP</h1>
-                    </div>
+            <div className="flex flex-col items-center justify-center w-full px-4 h-full py-2">
+              {settings?.logoUrl ? (
+                <div className="h-full w-full flex items-center justify-center">
+                  <img
+                    src={settings.logoUrl}
+                    alt="Fox Group"
+                    className="h-16 w-auto max-w-full object-contain drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                      e.currentTarget.nextElementSibling?.classList.add('flex');
+                    }}
+                  />
+                  {/* Fallback Text if Image Fails */}
+                  <div className="hidden flex-col items-center">
+                    <h1 className="font-bold text-2xl text-fox-500 neon-text tracking-widest uppercase">FOX GROUP</h1>
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center">
-                      <h1 className="font-bold text-2xl text-fox-500 neon-text tracking-widest uppercase">FOX GROUP</h1>
-                  </div>
-                )}
-             </div>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center">
+                  <h1 className="font-bold text-2xl text-fox-500 neon-text tracking-widest uppercase">FOX GROUP</h1>
+                </div>
+              )}
+            </div>
           ) : (
-             <div className="w-10 h-10 rounded-xl bg-fox-500 flex items-center justify-center neon-border shadow-lg shadow-fox-500/30">
-                <span className="font-bold text-white text-xl">F</span>
-             </div>
+            <div className="w-10 h-10 rounded-xl bg-fox-500 flex items-center justify-center neon-border shadow-lg shadow-fox-500/30">
+              <span className="font-bold text-white text-xl">F</span>
+            </div>
           )}
-          
-          <button 
+
+          <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="absolute top-2 left-2 p-1 rounded-md hover:bg-dark-800 text-gray-500 hover:text-fox-500 transition-colors z-10"
           >
@@ -139,15 +138,14 @@ const Layout: React.FC<LayoutProps> = ({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`w-full flex items-center px-4 py-3 transition-all duration-200 border-r-4 ${
-                  isActive 
-                    ? 'border-fox-500 bg-gradient-to-l from-fox-900/20 to-transparent text-fox-400' 
+                className={`w-full flex items-center px-4 py-3 transition-all duration-200 border-r-4 ${isActive
+                    ? 'border-fox-500 bg-gradient-to-l from-fox-900/20 to-transparent text-fox-400'
                     : 'border-transparent hover:bg-dark-800 text-gray-400 hover:text-gray-200'
-                }`}
+                  }`}
               >
-                <Icon 
-                  size={22} 
-                  className={`${isActive ? 'text-fox-500 drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]' : ''}`} 
+                <Icon
+                  size={22}
+                  className={`${isActive ? 'text-fox-500 drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]' : ''}`}
                 />
                 {isSidebarOpen && (
                   <span className={`mr-4 font-medium text-sm ${isActive ? 'text-white' : ''}`}>
@@ -163,7 +161,7 @@ const Layout: React.FC<LayoutProps> = ({
         </nav>
 
         <div className="p-4 border-t border-dark-800 bg-dark-950/50">
-          <button 
+          <button
             onClick={onLogout}
             className="w-full flex items-center justify-center px-4 py-2 rounded-lg text-red-400 hover:bg-red-900/20 hover:text-red-300 transition-colors"
           >
@@ -184,7 +182,7 @@ const Layout: React.FC<LayoutProps> = ({
           <div className="flex items-center gap-4">
             {/* Notifications */}
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
                 className="relative p-2 rounded-full hover:bg-dark-800 transition-colors focus:outline-none group"
               >
@@ -208,13 +206,13 @@ const Layout: React.FC<LayoutProps> = ({
                     ) : (
                       lowStockItems.map(item => (
                         <div key={item.id} className="p-3 border-b border-dark-800 hover:bg-dark-800/50 flex gap-3 cursor-pointer" onClick={() => onNavigate(APP_SECTIONS.INVENTORY)}>
-                           <div className="mt-1">
-                             <AlertTriangle size={16} className="text-red-500" />
-                           </div>
-                           <div>
-                             <p className="text-sm text-gray-300 font-medium">{item.name}</p>
-                             <p className="text-xs text-red-400">الكمية الحالية: {item.quantity} (الحد الأدنى: {item.minStockAlert})</p>
-                           </div>
+                          <div className="mt-1">
+                            <AlertTriangle size={16} className="text-red-500" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-gray-300 font-medium">{item.name}</p>
+                            <p className="text-xs text-red-400">الكمية الحالية: {item.quantity} (الحد الأدنى: {item.minStockAlert})</p>
+                          </div>
                         </div>
                       ))
                     )}
@@ -224,7 +222,7 @@ const Layout: React.FC<LayoutProps> = ({
             </div>
 
             {/* Profile Dropdown Trigger */}
-            <button 
+            <button
               onClick={() => setIsPasswordModalOpen(true)}
               className="flex items-center gap-3 bg-dark-800/50 pl-4 pr-1 py-1 rounded-full border border-dark-700/50 hover:border-fox-500/30 transition-colors cursor-pointer group"
               title="تغيير كلمة المرور"
@@ -246,35 +244,35 @@ const Layout: React.FC<LayoutProps> = ({
         </div>
 
         {/* Change Password Modal */}
-        <Modal 
-          isOpen={isPasswordModalOpen} 
-          onClose={() => setIsPasswordModalOpen(false)} 
+        <Modal
+          isOpen={isPasswordModalOpen}
+          onClose={() => setIsPasswordModalOpen(false)}
           title="تغيير كلمة المرور"
         >
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
-             <div className="flex items-center justify-center mb-4 text-fox-500">
-               <div className="p-4 rounded-full bg-fox-500/10 border border-fox-500/20">
-                 <Lock size={32} />
-               </div>
-             </div>
-             <div>
-               <label className="block text-sm text-gray-400 mb-1">كلمة المرور الجديدة</label>
-               <div className="relative">
-                 <Key className="absolute right-3 top-2.5 text-gray-500" size={16} />
-                 <input 
-                   type="password"
-                   required
-                   minLength={3}
-                   className="w-full bg-dark-900 border border-dark-700 text-white pr-10 pl-3 py-2 rounded-lg focus:border-fox-500 focus:outline-none"
-                   value={newPassword}
-                   onChange={e => setNewPassword(e.target.value)}
-                   placeholder="******"
-                 />
-               </div>
-             </div>
-             <button type="submit" className="w-full bg-fox-600 hover:bg-fox-500 text-white py-2.5 rounded-lg font-bold mt-2">
-               تحديث كلمة المرور
-             </button>
+            <div className="flex items-center justify-center mb-4 text-fox-500">
+              <div className="p-4 rounded-full bg-fox-500/10 border border-fox-500/20">
+                <Lock size={32} />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm text-gray-400 mb-1">كلمة المرور الجديدة</label>
+              <div className="relative">
+                <Key className="absolute right-3 top-2.5 text-gray-500" size={16} />
+                <input
+                  type="password"
+                  required
+                  minLength={3}
+                  className="w-full bg-dark-900 border border-dark-700 text-white pr-10 pl-3 py-2 rounded-lg focus:border-fox-500 focus:outline-none"
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
+                  placeholder="******"
+                />
+              </div>
+            </div>
+            <button type="submit" className="w-full bg-fox-600 hover:bg-fox-500 text-white py-2.5 rounded-lg font-bold mt-2">
+              تحديث كلمة المرور
+            </button>
           </form>
         </Modal>
 

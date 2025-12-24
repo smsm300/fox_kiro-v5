@@ -62,9 +62,21 @@ class TransactionSerializer(serializers.ModelSerializer):
         return None
     
     def get_items(self, obj):
-        """Get items with product names"""
+        """Get items with product names - optimized to avoid N+1 queries"""
         if not obj.items or not isinstance(obj.items, list):
             return []
+        
+        # Collect all product IDs that need lookup
+        product_ids_to_fetch = []
+        for item in obj.items:
+            if isinstance(item, dict) and not item.get('name') and item.get('id'):
+                product_ids_to_fetch.append(item.get('id'))
+        
+        # Batch fetch all products at once (single query instead of N queries)
+        products_map = {}
+        if product_ids_to_fetch:
+            products = Product.objects.filter(product_id__in=product_ids_to_fetch)
+            products_map = {p.product_id: p.product_name for p in products}
         
         # Enrich items with product names
         enriched_items = []
@@ -73,19 +85,12 @@ class TransactionSerializer(serializers.ModelSerializer):
                 continue
             
             product_id = item.get('id')
-            # Get name from item if already enriched, otherwise fetch from DB
-            item_name = item.get('name')
-            
-            if not item_name and product_id:
-                try:
-                    product = Product.objects.get(product_id=product_id)
-                    item_name = product.product_name
-                except Product.DoesNotExist:
-                    item_name = f'منتج #{product_id}'
+            # Get name from item if already enriched, otherwise from batch fetch
+            item_name = item.get('name') or products_map.get(product_id, f'منتج #{product_id}')
             
             enriched_item = {
                 'id': product_id,
-                'name': item_name or f'منتج #{product_id}',
+                'name': item_name,
                 'cartQuantity': item.get('quantity', item.get('cartQuantity', 0)),
                 'costPrice': float(item.get('cost_price', item.get('costPrice', 0))),
                 'sellPrice': float(item.get('price', item.get('sellPrice', 0))),
@@ -204,11 +209,30 @@ class ProductSerializer(serializers.ModelSerializer):
         """Check if product is low on stock"""
         return obj.current_stock <= obj.min_stock_level
     
+    def validate_sku(self, value):
+        """Validate SKU is unique"""
+        # Check if this is an update (instance exists) or create
+        if self.instance:
+            # Update: allow same SKU for same product
+            if self.instance.product_code == value:
+                return value
+            # Check if SKU exists for other products
+            if Product.objects.filter(product_code=value).exclude(product_id=self.instance.product_id).exists():
+                raise serializers.ValidationError('كود المنتج (SKU) موجود مسبقاً')
+        else:
+            # Create: check if SKU exists
+            if Product.objects.filter(product_code=value).exists():
+                raise serializers.ValidationError('كود المنتج (SKU) موجود مسبقاً')
+        return value
+    
     def create(self, validated_data):
         """Create a new product"""
         # If barcode is empty, set it to None to avoid unique constraint issues
         if 'barcode' in validated_data and not validated_data['barcode']:
             validated_data['barcode'] = None
+        # If product_image is empty, set it to None
+        if 'product_image' in validated_data and not validated_data['product_image']:
+            validated_data['product_image'] = None
         return Product.objects.create(**validated_data)
     
     def update(self, instance, validated_data):
@@ -216,6 +240,9 @@ class ProductSerializer(serializers.ModelSerializer):
         # If barcode is empty, set it to None
         if 'barcode' in validated_data and not validated_data['barcode']:
             validated_data['barcode'] = None
+        # If product_image is empty, set it to None
+        if 'product_image' in validated_data and not validated_data['product_image']:
+            validated_data['product_image'] = None
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
