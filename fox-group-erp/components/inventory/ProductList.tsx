@@ -129,36 +129,35 @@ export const ProductList: React.FC<ProductListProps> = ({
                                 <title>Barcode - ${product.name}</title>
                                 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
                                 <style>
-                                  @font-face {
-                                    font-family: 'Libre Barcode 39 Text';
-                                    src: url('/fonts/librebarcode39text.woff2') format('woff2');
-                                  }
-                                  body { 
-                                    font-family: 'Cairo', sans-serif;
-                                    margin: 0;
-                                    padding: 20px;
+                                  @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+                                  body {
+                                    font-family: system-ui, -apple-system, sans-serif;
                                     display: flex;
                                     justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                    margin: 0;
                                     background: #f0f0f0;
                                   }
                                   .label-card {
+                                    width: 350px; /* Reduced width to force compact layout if needed, or keep standard 400px */
+                                    padding: 15px;
                                     background: white;
-                                    width: 300px;
-                                    padding: 20px;
-                                    border-radius: 8px;
-                                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                                    border-radius: 12px;
+                                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
                                     text-align: center;
                                     border: 1px dashed #ccc;
+                                    overflow: hidden; /* Ensure content doesn't spill out */
                                   }
                                   .brand-name {
                                     color: #f97316;
                                     font-weight: bold;
                                     font-size: 14px;
-                                    margin-bottom: 10px;
+                                    margin-bottom: 5px;
                                     letter-spacing: 2px;
                                   }
                                   .product-name {
-                                    font-size: 18px;
+                                    font-size: 16px; /* Slightly smaller to fit more text */
                                     font-weight: 700;
                                     color: #1a1a1a;
                                     margin-bottom: 5px;
@@ -166,52 +165,67 @@ export const ProductList: React.FC<ProductListProps> = ({
                                     -webkit-line-clamp: 2;
                                     -webkit-box-orient: vertical;
                                     overflow: hidden;
+                                    line-height: 1.2;
                                   }
                                   .category {
-                                    font-size: 11px;
+                                    font-size: 10px;
                                     color: #666;
                                     background: #f3f4f6;
                                     padding: 2px 8px;
                                     border-radius: 4px;
                                     display: inline-block;
-                                    margin-bottom: 15px;
+                                    margin-bottom: 5px;
                                   }
                                   .barcode-container {
-                                    margin: 15px 0;
-                                    padding: 10px;
+                                    margin: 5px 0;
+                                    padding: 5px;
                                     background: #fff;
+                                    /* Flex to center content */
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 100%;
+                                    overflow: hidden;
                                   }
                                   .barcode-font {
                                     font-family: 'Libre Barcode 39 Text';
-                                    font-size: 70px;
+                                    font-size: 55px; /* Reduced font size from 70px */
                                     margin: 0;
                                     line-height: 1;
                                     color: #000;
+                                    white-space: nowrap; /* Prevent wrapping */
+                                    /* Scale down if too wide */
+                                    max-width: 100%;
+                                    overflow: hidden;
+                                    text-overflow: clip; 
                                   }
+                                  /* Optional: Use a transform for very long barcodes if needed, but font-size reduction usually safer for readability */
+                                  
                                   .barcode-text {
                                     font-family: monospace;
                                     font-size: 12px;
                                     color: #333;
-                                    margin-top: 5px;
+                                    margin-top: -5px; /* Pull text closer to barcode lines */
                                   }
                                   .price-tag {
-                                    margin-top: 15px;
-                                    padding-top: 15px;
+                                    margin-top: 5px;
+                                    padding-top: 5px;
                                     border-top: 2px solid #f3f4f6;
                                   }
                                   .price-value {
-                                    font-size: 28px;
+                                    font-size: 24px;
                                     font-weight: 900;
                                     color: #f97316;
                                   }
                                   .currency {
-                                    font-size: 14px;
+                                    font-size: 12px;
                                     margin-right: 4px;
                                     color: #666;
                                   }
                                   @media print {
-                                    body { background: white; padding: 0; }
-                                    .label-card { box-shadow: none; border: 1px solid #000; }
+                                    body { background: white; padding: 0; height: auto; }
+                                    .label-card { box-shadow: none; border: 1px solid #000; page-break-inside: avoid; margin: 0 auto; }
                                   }
                                 </style>
                               </head>
@@ -223,7 +237,6 @@ export const ProductList: React.FC<ProductListProps> = ({
                                   
                                   <div class="barcode-container">
                                     <div class="barcode-font">${product.barcode || product.sku}</div>
-                                    <div class="barcode-text">${product.barcode || product.sku}</div>
                                   </div>
                                   
                                   <div class="price-tag">
@@ -231,7 +244,7 @@ export const ProductList: React.FC<ProductListProps> = ({
                                     <span class="currency">ج.م</span>
                                   </div>
                                   
-                                  <div style="font-size: 10px; color: #999; margin-top: 10px;">SKU: ${product.sku}</div>
+                                  <div style="font-size: 10px; color: #999; margin-top: 5px;">SKU: ${product.sku}</div>
                                 </div>
                               </body>
                             </html>

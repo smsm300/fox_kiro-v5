@@ -46,17 +46,23 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
               <div className="flex items-center gap-3">
                 {/* Product Image Thumbnail */}
                 <div className="w-12 h-12 bg-dark-800 rounded-md overflow-hidden flex-shrink-0 border border-dark-700">
-                  {product.image ? (
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-dark-600">
-                      <Package size={16} />
-                    </div>
-                  )}
+                  <img
+                    src={product.image || '/fox-logo.png'}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (target.src.includes('fox-logo.png')) {
+                        target.style.display = 'none';
+                        if (target.parentElement) {
+                          // Use simpler small fallback
+                          target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-dark-600">📦</div>';
+                        }
+                      } else {
+                        target.src = '/fox-logo.png';
+                      }
+                    }}
+                  />
                 </div>
 
                 <div className="flex-1">

@@ -57,8 +57,8 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
             key={cat}
             onClick={() => onCategoryChange(cat)}
             className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
-                ? 'bg-fox-500 text-white shadow-md'
-                : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
+              ? 'bg-fox-500 text-white shadow-md'
+              : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
               }`}
           >
             {cat === 'all' ? 'الكل' : cat}
@@ -84,23 +84,29 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
             >
               {/* Product Image */}
               <div className="w-full h-32 mb-2 bg-dark-800 rounded-md overflow-hidden flex-shrink-0">
-                {product.image ? (
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-dark-600">
-                    <Box size={32} />
-                  </div>
-                )}
+                <img
+                  src={product.image || '/fox-logo.png'}
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('fox-logo.png')) {
+                      target.style.display = 'none';
+                      // Fallback HTML if even the logo fails
+                      if (target.parentElement) {
+                        target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-dark-600"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>';
+                      }
+                    } else {
+                      target.src = '/fox-logo.png';
+                    }
+                  }}
+                />
               </div>
 
               <div className="flex justify-between items-start w-full">
                 <span className={`text-xs px-2 py-0.5 rounded ${product.quantity === 0 ? 'bg-red-900/30 text-red-400' :
-                    product.quantity <= product.minStockAlert ? 'bg-yellow-900/30 text-yellow-400' :
-                      'bg-emerald-900/30 text-emerald-400'
+                  product.quantity <= product.minStockAlert ? 'bg-yellow-900/30 text-yellow-400' :
+                    'bg-emerald-900/30 text-emerald-400'
                   }`}>
                   {product.quantity} {product.unit}
                 </span>
