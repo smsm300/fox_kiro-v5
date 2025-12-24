@@ -14,11 +14,13 @@ def serve_react_app(request, path=''):
     
     file_path = os.path.join(settings.BASE_DIR, 'staticfiles', path)
     
-    # Try to find the file in staticfiles/assets if not found in staticfiles root
-    if not os.path.exists(file_path) and not path.startswith('assets'):
-        assets_path = os.path.join(settings.BASE_DIR, 'staticfiles', 'assets', path)
-        if os.path.exists(assets_path):
-            file_path = assets_path
+    # Try common React build subdirectories if not found in root
+    if not os.path.exists(file_path):
+        for sub in ['assets', 'fonts', 'lib']:
+            temp_path = os.path.join(settings.BASE_DIR, 'staticfiles', sub, path)
+            if os.path.exists(temp_path):
+                file_path = temp_path
+                break
     
     if os.path.exists(file_path) and os.path.isfile(file_path):
         if path.endswith('.html'):
@@ -40,6 +42,7 @@ def serve_react_app(request, path=''):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', RedirectView.as_view(url='/app/', permanent=False)),
     path('api/', include('apps.api.urls')),  # API endpoints
     path('', include('apps.users.urls')),
     path('customers/', include('apps.customers.urls')),
@@ -52,9 +55,10 @@ urlpatterns = [
     path('reports/', include('apps.reports.urls')),
     path('quotations/', include('apps.quotations.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/fox-logo.png', permanent=True)),
-    # Serve React static assets - these must come BEFORE the React app catch-all
+    # Serve React static assets
     path('assets/<path:path>', serve_react_app, name='static_assets'),
-    # Serve React app - this must come LAST as a catch-all
+    path('fonts/<path:path>', serve_react_app, name='static_fonts'),
+    # Serve React app
     path('app/<path:path>', serve_react_app, name='react_app'),
     path('app/', serve_react_app, name='react_app_root'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
