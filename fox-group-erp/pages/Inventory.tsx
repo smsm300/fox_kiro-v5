@@ -49,7 +49,8 @@ const Inventory: React.FC<InventoryProps> = ({ onProductsChange }) => {
     sellPrice: 0,
     unit: 'قطعة',
     minStockAlert: 5,
-    image: ''
+    image: '',
+    barcode: ''
   });
 
   const categories = ['all', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))];
@@ -74,7 +75,8 @@ const Inventory: React.FC<InventoryProps> = ({ onProductsChange }) => {
       sellPrice: 0,
       unit: 'قطعة',
       minStockAlert: 5,
-      image: ''
+      image: '',
+      barcode: ''
     });
     setIsFormOpen(true);
   };
@@ -90,7 +92,8 @@ const Inventory: React.FC<InventoryProps> = ({ onProductsChange }) => {
       sellPrice: product.sellPrice,
       unit: product.unit,
       minStockAlert: product.minStockAlert,
-      image: product.image || ''
+      image: product.image || '',
+      barcode: product.barcode || ''
     });
     setIsFormOpen(true);
   };
@@ -207,8 +210,8 @@ const Inventory: React.FC<InventoryProps> = ({ onProductsChange }) => {
             key={cat}
             onClick={() => setSelectedCategory(cat)}
             className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
-                ? 'bg-fox-500 text-white shadow-md'
-                : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
+              ? 'bg-fox-500 text-white shadow-md'
+              : 'bg-dark-900 text-gray-400 hover:bg-dark-800 border border-dark-700'
               }`}
           >
             {cat === 'all' ? 'الكل' : cat}

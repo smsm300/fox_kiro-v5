@@ -173,6 +173,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               </div>
             </div>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">باركود (Barcode)</label>
+              <input
+                type="text"
+                value={formData.barcode || ''}
+                onChange={(e) => onFormChange('barcode', e.target.value)}
+                className="w-full bg-dark-900 border border-dark-700 text-white px-3 py-2 rounded-lg focus:border-fox-500 outline-none"
+                placeholder="امسح الباركود هنا..."
+              />
+            </div>
+
 
 
             <div>
@@ -340,17 +351,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           {/* Image Section */}
           <div className="border-t border-dark-800 pt-4">
             <label className="block text-sm font-medium text-gray-300 mb-2">صورة المنتج</label>
-            
+
             {/* Mode Toggle */}
             <div className="flex gap-2 mb-3">
               <button
                 type="button"
                 onClick={() => setImageMode('url')}
-                className={`flex-1 py-2 px-3 rounded-lg text-sm flex items-center justify-center gap-2 ${
-                  imageMode === 'url'
+                className={`flex-1 py-2 px-3 rounded-lg text-sm flex items-center justify-center gap-2 ${imageMode === 'url'
                     ? 'bg-fox-500 text-white'
                     : 'bg-dark-900 text-gray-400 border border-dark-700 hover:bg-dark-800'
-                }`}
+                  }`}
               >
                 <Link size={16} />
                 رابط صورة
@@ -358,11 +368,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               <button
                 type="button"
                 onClick={() => setImageMode('upload')}
-                className={`flex-1 py-2 px-3 rounded-lg text-sm flex items-center justify-center gap-2 ${
-                  imageMode === 'upload'
+                className={`flex-1 py-2 px-3 rounded-lg text-sm flex items-center justify-center gap-2 ${imageMode === 'upload'
                     ? 'bg-fox-500 text-white'
                     : 'bg-dark-900 text-gray-400 border border-dark-700 hover:bg-dark-800'
-                }`}
+                  }`}
               >
                 <Upload size={16} />
                 رفع صورة

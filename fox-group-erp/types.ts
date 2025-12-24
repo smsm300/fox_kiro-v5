@@ -31,6 +31,7 @@ export interface Product {
   unit: ProductUnit;
   minStockAlert: number;
   image?: string;
+  barcode?: string;
 }
 
 export interface CartItem extends Product {

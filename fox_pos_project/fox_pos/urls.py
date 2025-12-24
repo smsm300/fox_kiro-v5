@@ -16,11 +16,15 @@ def serve_react_app(request, path=''):
     
     # Try common React build subdirectories if not found in root
     if not os.path.exists(file_path):
-        for sub in ['assets', 'fonts', 'lib']:
-            temp_path = os.path.join(settings.BASE_DIR, 'staticfiles', sub, path)
-            if os.path.exists(temp_path):
-                file_path = temp_path
-                break
+        # Specific fix for root-level assets in React build
+        if path == 'fox-logo.png':
+           file_path = os.path.join(settings.BASE_DIR, 'staticfiles', 'fox-logo.png')
+        else:
+            for sub in ['assets', 'fonts', 'lib']:
+                temp_path = os.path.join(settings.BASE_DIR, 'staticfiles', sub, path)
+                if os.path.exists(temp_path):
+                    file_path = temp_path
+                    break
     
     if os.path.exists(file_path) and os.path.isfile(file_path):
         if path.endswith('.html'):
@@ -58,6 +62,7 @@ urlpatterns = [
     # Serve React static assets
     path('assets/<path:path>', serve_react_app, name='static_assets'),
     path('fonts/<path:path>', serve_react_app, name='static_fonts'),
+    path('fox-logo.png', serve_react_app, {'path': 'fox-logo.png'}, name='root_logo'),
     # Serve React app
     path('app/<path:path>', serve_react_app, name='react_app'),
     path('app/', serve_react_app, name='react_app_root'),

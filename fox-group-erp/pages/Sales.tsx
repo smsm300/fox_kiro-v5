@@ -122,6 +122,40 @@ const Sales: React.FC<SalesProps> = ({
     return <ShiftManager onOpenShift={handleOpenShift} />;
   }
 
+  // Auto-add product when barcode matches exactly
+  useEffect(() => {
+    if (searchTerm.length >= 3) {
+      const exactMatch = products.find(p =>
+        (p.barcode && p.barcode === searchTerm) ||
+        (p.sku === searchTerm)
+      );
+
+      if (exactMatch) {
+        handleAddToCart(exactMatch);
+        setSearchTerm(''); // Clear search for next scan
+      }
+    }
+  }, [searchTerm, products]);
+
+  // Global scanner listener (Focus search when user starts typing)
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept if focus is already in an input/textarea
+      if (
+        document.activeElement?.tagName === 'INPUT' ||
+        document.activeElement?.tagName === 'TEXTAREA'
+      ) return;
+
+      // Ensure search input exists and focus it
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
